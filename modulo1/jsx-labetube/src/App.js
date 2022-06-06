@@ -1,69 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/estaticos/header';
+import { Footer } from './components/estaticos/footer';
+import CardVideoComponent from './components/CardVideoComponent';
+import { MenuItemComponent } from './components/MenuItemComponent';
 
 function App() {
-  function reproduzVideo() {
-    alert("O vídeo está sendo reproduzido")
-}
   return (
     <div className="App">
-      <header>
-            <h1>Lab Tube</h1>
-            <input type="text" placeholder="Busca" id="campoDeBusca"/> 
-        </header>
+      <Header/>
         <main>
             <nav className="menu-vertical">
                 <ul>
-                    <li className="botoes-meunu-vertical">Início</li>
-                    <li className="botoes-meunu-vertical">Em alta</li>
-                    <li className="botoes-meunu-vertical">Inscrições</li>
-                    <hr>
-                    </hr>
-                    <li className="botoes-meunu-vertical">Originais</li>
-                    <li className="botoes-meunu-vertical">Histórico</li>
+                    <MenuItemComponent ItemTitle={'inicio'}/> 
+                    <MenuItemComponent ItemTitle={'Em alta'}/>
+                    <MenuItemComponent ItemTitle={'Inscrições'}/> 
+                    <hr/>
+                    <MenuItemComponent ItemTitle={'Originais'}/>
+                    <MenuItemComponent ItemTitle={'Histórico'}/> 
                 </ul>
             </nav>
 
             <section className="painel-de-videos">
-                <div className="box-pagina-principal media1" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=1 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media2" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=2 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media3" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=3 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media4" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=4 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media5" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=5 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media6" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=6 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media7" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=7 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-                <div className="box-pagina-principal media8" onClick={reproduzVideo}>
-                    <img src="https://picsum.photos/400/400?a=8 " alt=""></img>
-                    <h4>Título do vídeo</h4>
-                </div>
-            </section>
+                <CardVideoComponent local={'box-pagina-principal media1'} Url={'https://picsum.photos/400/400?a=1'} VideoTitle={'Terror'}/> 
+                <CardVideoComponent local={'box-pagina-principal media2'} Url={'https://picsum.photos/400/400?a=2'} VideoTitle={'Animação'}/>
+                <CardVideoComponent local={'box-pagina-principal media3'} Url={'https://picsum.photos/400/400?a=3'} VideoTitle={'Amor'}/>
+                <CardVideoComponent local={'box-pagina-principal media4'} Url={'https://picsum.photos/400/400?a=4'} VideoTitle={'Comédia'}/>
+                <CardVideoComponent local={'box-pagina-principal media5'} Url={'https://picsum.photos/400/400?a=5'} VideoTitle={'Vida'}/> 
+                <CardVideoComponent local={'box-pagina-principal media6'} Url={'https://picsum.photos/400/400?a=6'} VideoTitle={'Diversos'}/>
+                <CardVideoComponent local={'box-pagina-principal media7'} Url={'https://picsum.photos/400/400?a=7'} VideoTitle={'Geek'}/>
+                <CardVideoComponent local={'box-pagina-principal media8'} Url={'https://picsum.photos/400/400?a=8'} VideoTitle={'Documentário'}/>              
+           </section>
         </main>
-
-        <footer>
-            <h4>Oi! Eu moro no footer!</h4>
-        </footer>
-    </div>
+        <Footer/>
+      </div>
   );
 }
 
