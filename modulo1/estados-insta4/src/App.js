@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Post from './components/Post/Post';
+//importando react o styled component e o component post
 
 const MainContainer = styled.div`
   display: flex;
@@ -8,6 +9,7 @@ const MainContainer = styled.div`
   flex-direction: column; 
   align-items: center;
 `
+//estilizando a div  main Container
 function App() {
 return(
   <MainContainer>

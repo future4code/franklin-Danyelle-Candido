@@ -39,12 +39,12 @@ const PostPhoto = styled.img`
 `
 
 function Post(props){
-  const [state, setState] = useState({
+/*   const [state, setState] = useState({
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0
-  })
+  }) é a mesma coisa que o de baixo declarado de forma diferente */
  
   const [numeroCurtidas, setnumeroCurtidas] = useState (0)
   const [curtido, setCurtido] = useState(false)
@@ -52,7 +52,9 @@ function Post(props){
   const [numeroComentarios, setNumeroComentarios] = useState(0)
 
   const onClickCurtida = () => {
-    console.log('Curtiu!')
+    setnumeroCurtidas(numeroCurtidas+1)
+    setCurtido(true)
+
   }
   
   const onClickComentario = () => {
@@ -94,7 +96,7 @@ function Post(props){
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={onClickCurtida}
-          valorContador={state.numeroCurtidas}
+          valorContador={numeroCurtidas}
         />
 
         <IconeComContador
