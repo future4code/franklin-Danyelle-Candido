@@ -12,9 +12,7 @@ const MainContainer = styled.div`
 //estilizando a div  main Container
 function App() {
   //a lista é feita dentro do estado atual da aplicação
-  const [stateUser, setStateUser] = useState({
-    //dentro da lista colocamos objetos invés de usar props
-    Users: [
+  const [stateUser, setStateUser] = useState([
       {
       nomeUsuario:'Du',
       fotoUsuario:'https://picsum.photos/50/50',
@@ -32,8 +30,7 @@ function App() {
         fotoUsuario:'https://picsum.photos/60/60',
         fotoPost:'https://picsum.photos/201/150'
       }
-    ]
-  });
+    ]);
 
   const [valorInputUser, setvalorInputUser] = useState("");
   const [valorInputFoto, setvalorInputFoto] = useState("");
@@ -46,7 +43,7 @@ function App() {
       fotoUsuario:valorInputFoto,
       fotoPost:valorInputPost
     };
-    const novosUsers = [...stateUser.Users, novoUser];
+    const novosUsers = [...stateUser, novoUser];
     setStateUser(novosUsers);
   };
 
@@ -61,7 +58,7 @@ function App() {
   const onChangeInputPost = (event) => {
     setvalorInputPost(event.target.value);
   };
-  const listarUsers = stateUser.Users.map((user) => {
+  const listarUsers = stateUser.map((user) => {
     return (
       <Post
       nomeUsuario={user.nomeUsuario}
