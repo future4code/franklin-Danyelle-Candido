@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import './styles.css'
+import './App.css'
 
-
-//estilizando componentes
 const TarefaList = styled.ul`
   padding: 0;
   width: 200px;
@@ -11,7 +9,7 @@ const TarefaList = styled.ul`
 
 const Tarefa = styled.li`
   text-align: left;
-  text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
+  text-decoration: ${({ completa }) => (completa ? 'line-through' : 'none')};
 `
 
 const InputsContainer = styled.div`
@@ -20,83 +18,73 @@ const InputsContainer = styled.div`
   gap: 10px;
 `
 
-
 function App() {
-  const [tarefas, setTarefa] = useState([
-    { id: Math.randon(), 
-      texto: 'tarefa 1',
-      completa: false },
-    { id: Math.random(),
-      texto: 'tarefa 2',
-      completa: true },
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [filtro, setFiltro] = useState('pendentes');
+  const [tarefas, setTarefas] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [filtro, setFiltro] = useState("")
 
   useEffect(() => {
     if (tarefas) {
-      const tarefasArmazenadas = localStorage.getItem('tarefas');
-      setTarefa(JSON.parse(tarefasArmazenadas));
+      const tarefasArmazenadas = localStorage.getItem("tarefas")
+      setTarefas(JSON.parse(tarefasArmazenadas))
     } else {
-      localStorage.setItem('tarefas', JSON.stringify(tarefas));
+      localStorage.setItem("tarefas", JSON.stringify(tarefas))
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
-  }, [tarefas]);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+  }, [tarefas])
+
 
   const onChangeInput = (event) => {
-    setInputValue(event.target.value);
-  };
+    setInputValue(event.target.value)
+  }
 
   const criaTarefa = () => {
     const novaTarefa = {
       id: Math.random(),
       texto: inputValue,
-      completa: false,
-    };
-    const listaTarefas = [...tarefas, novaTarefa];
-    setTarefa(listaTarefas);
-    setInputValue('');
-  };
+      completa: false
+    }
+
+    setTarefas([...tarefas, novaTarefa])
+
+    setInputValue("")
+  }
 
   const selectTarefa = (id) => {
-    const AtualizarListaTarefas = tarefas.map((tarefa) => {
+    const novaLista = tarefas.map((tarefa) => {
       if (id === tarefa.id) {
-        const novoEstado = {
-          ...tarefa,
-          completa: !tarefa.completa,
-        };
-        return novoEstado;
-      } else {
-        return tarefa;
-      }
-    });
-    setTarefa(AtualizarListaTarefas);
-  };
+        const novoEstado = { ...tarefa, completa: !tarefa.completa }
+        return novoEstado
+      } return tarefa
+    })
+    setTarefas(novaLista)
+  }
 
   const onChangeFilter = (event) => {
-    setFiltro(event.target.value);
-  };
+    setFiltro(event.target.value)
+  }
 
-  const listaFiltrada = tarefas.filter((tarefa) => {
+  const listaFiltrada = tarefas.filter(tarefa => {
     switch (filtro) {
       case 'pendentes':
-        return !tarefa.completa;
+        return !tarefa.completa
       case 'completas':
-        return tarefa.completa;
+        return tarefa.completa
       default:
-        return true;
+        return true
     }
   });
 
+
   return (
     <div className="App">
-      <h1>Minhas tarefas:</h1>
+      <h1>Minhas tarefas</h1>
       <InputsContainer>
         <input value={inputValue} onChange={onChangeInput} />
-        <button onClick={criaTarefa}>Adicionar Tarefa</button>
+        <button onClick={criaTarefa}>Adicionar tarefa</button>
       </InputsContainer>
       <br />
 
@@ -109,7 +97,7 @@ function App() {
         </select>
       </InputsContainer>
       <TarefaList>
-        {listaFiltrada.map((tarefa) => {
+        {listaFiltrada.map(tarefa => {
           return (
             <Tarefa
               completa={tarefa.completa}
@@ -117,11 +105,12 @@ function App() {
             >
               {tarefa.texto}
             </Tarefa>
-          );
+          )
         })}
       </TarefaList>
     </div>
-  );
+  )
 }
 
-export default App;
+
+export default App
