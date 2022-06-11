@@ -22,111 +22,106 @@ const InputsContainer = styled.div`
 
 
 function App() {
-  const [tarefas, setTarefa] = useState([{
-    id: Math.random(), 
-    texto: 'Texto da tarefa',
-    completa: false 
-  },
-  {
-    id: Math.random(), 
-    texto: 'Texto da segunda tarefa',
-    completa: true 
-  }
-]);
-  const [inputValue, setInputValue] = useState("");
-  const [filtro, setFiltro] = useState("")
-  //declarando meus estados 
+  const [tarefas, setTarefa] = useState([
+    { id: Math.randon(), 
+      texto: 'tarefa 1',
+      completa: false },
+    { id: Math.random(),
+      texto: 'tarefa 2',
+      completa: true },
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [filtro, setFiltro] = useState('pendentes');
 
-/*   useEffect() => {
-    () => {
+  useEffect(() => {
+    if (tarefas) {
+      const tarefasArmazenadas = localStorage.getItem('tarefas');
+      setTarefa(JSON.parse(tarefasArmazenadas));
+    } else {
+      localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    }
+  }, []);
 
-    },
-    []
+  useEffect(() => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }, [tarefas]);
+
+  const onChangeInput = (event) => {
+    setInputValue(event.target.value);
   };
 
-  useEffect() => {
-    () => {
-
-    },
-    []
-  }; */
-
-  onChangeInput = (event) => {
-    setTarefa(event.target.value);
-  }
-
-  const clean=()=>{
-    setInputValue('');
-  }
-
-  criaTarefa = () => {
-    const novaTarefa ={
-      id: Math.random(), 
+  const criaTarefa = () => {
+    const novaTarefa = {
+      id: Math.random(),
       texto: inputValue,
-      completa: false
+      completa: false,
     };
+    const listaTarefas = [...tarefas, novaTarefa];
+    setTarefa(listaTarefas);
+    setInputValue('');
+  };
 
-    const novaLista = [...tarefas, novaTarefa];
-
-    setTarefa(novaLista);
-    clean();
-
-  }
-
-  selectTarefa = (id) => {
-      
-  }
-
-  onChangeFilter = (event) => {
-    setFiltro(event.target.value);
-  }
-
- 
-    const listaFiltrada = tarefas.filter(tarefa => {
-      switch (filtro) {
-        case 'pendentes':
-          return !tarefa.completa
-        case 'completas':
-          return tarefa.completa
-        default:
-          return true
+  const selectTarefa = (id) => {
+    const AtualizarListaTarefas = tarefas.map((tarefa) => {
+      if (id === tarefa.id) {
+        const novoEstado = {
+          ...tarefa,
+          completa: !tarefa.completa,
+        };
+        return novoEstado;
+      } else {
+        return tarefa;
       }
     });
-    //filtrando as tarefas incluidas pendente e completas
-    
+    setTarefa(AtualizarListaTarefas);
+  };
 
-    return (
-      <div className="App">
-        <h1>Lista de tarefas</h1>
-        <InputsContainer>
-          <input /*incluindo tarefa*/value={inputValue} onChange={onChangeInput}/>
-          <button onClick={criaTarefa}>Adicionar</button>
-        </InputsContainer>
-        <br/>
+  const onChangeFilter = (event) => {
+    setFiltro(event.target.value);
+  };
 
-        <InputsContainer>
-          <label /*incluindo um filtro de pendente ou completa*/>Filtro</label>
-          <select value={filtro} onChange={onChangeFilter}>
-            <option value="">Nenhum</option>
-            <option value="pendentes">Pendentes</option>
-            <option value="completas">Completas</option>
-          </select>
-        </InputsContainer>
-        <TarefaList>
-          {listaFiltrada.map(tarefa => {
-            return (
-              <Tarefa
-                completa={tarefa.completa}
-                onClick={() => selectTarefa(tarefa.id)}
-              >
-                {tarefa.texto}
-              </Tarefa>
-            )
-          })}
-        </TarefaList>
-      </div>
-    )
-  }
+  const listaFiltrada = tarefas.filter((tarefa) => {
+    switch (filtro) {
+      case 'pendentes':
+        return !tarefa.completa;
+      case 'completas':
+        return tarefa.completa;
+      default:
+        return true;
+    }
+  });
 
+  return (
+    <div className="App">
+      <h1>Minhas tarefas:</h1>
+      <InputsContainer>
+        <input value={inputValue} onChange={onChangeInput} />
+        <button onClick={criaTarefa}>Adicionar Tarefa</button>
+      </InputsContainer>
+      <br />
 
-export default App
+      <InputsContainer>
+        <label>Filtro</label>
+        <select value={filtro} onChange={onChangeFilter}>
+          <option value="">Todas</option>
+          <option value="pendentes">Pendentes</option>
+          <option value="completas">Completas</option>
+        </select>
+      </InputsContainer>
+      <TarefaList>
+        {listaFiltrada.map((tarefa) => {
+          return (
+            <Tarefa
+              completa={tarefa.completa}
+              onClick={() => selectTarefa(tarefa.id)}
+            >
+              {tarefa.texto}
+            </Tarefa>
+          );
+        })}
+      </TarefaList>
+    </div>
+  );
+}
+
+export default App;
