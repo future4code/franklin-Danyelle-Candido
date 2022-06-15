@@ -15,7 +15,31 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "addTrackToPlaylists",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SearchPlaylist",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteItemPlaylist",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePlaylistt",
 			"request": {
 				"method": "GET",
 				"header": []
