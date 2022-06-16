@@ -2,9 +2,9 @@
 <!--👉🏽🛠⚠ em contrução
 ✋🏽❌⛔parado
 👍🏽✔🟢concluído-->
-# USANDO POSTMAN
+# PROJETO LAB
 
-Neste projeto aprendo a usar o postman aplicando-o no projeto Labefy desenvolvido pela Labenu.
+Neste projeto aprendo a usar React através da criação de uma aplicação em React.
 
 ## 🚀 Começando
 
