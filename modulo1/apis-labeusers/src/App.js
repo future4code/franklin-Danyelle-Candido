@@ -7,6 +7,7 @@ const App = () => {
   const [inputName, setInputName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
 
+
   const listarUsuarios = () => {
    axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users',{
     headers:{
@@ -38,6 +39,20 @@ const App = () => {
 
   }
 
+   const deletarUsuario =(idUsuario) =>{
+
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${idUsuario}`, {
+      headers:{
+        Authorization:'danyelle-candido-franklin'
+      }
+    }).then((response)=>{
+      alert('usuário deletado com sucesso')
+      listarUsuarios()
+     }).catch((error)=>{console.log(error.code)
+      console.log(error.message)
+      alert('erro ao deletar')})
+
+  }
 
 /*   const procurarUsuario =() =>{
 
@@ -50,6 +65,8 @@ const App = () => {
   const handleInputEmail =(e) =>{
     setInputEmail(e.target.value)
   }
+
+
 
   useEffect(listarUsuarios,[])
 
@@ -65,7 +82,7 @@ const App = () => {
 
         {listaDeUsuarios.map((usuario) =>{
           return (
-            <li key={usuario.id}>{usuario.name}</li>
+            <li key={usuario.id}>{usuario.name}<button onClick={() => deletarUsuario(usuario.id)}>X</button></li>
           )
         })}
     </div>
