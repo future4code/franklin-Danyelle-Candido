@@ -1,0 +1,75 @@
+import axios from "axios";
+import React, {useEffect, useState } from 'react';
+import './App.css';
+
+const App = () => {
+  const[listaDeUsuarios,setlistaDeUsuarios]=useState([])
+  const [inputName, setInputName] = useState('')
+  const [inputEmail, setInputEmail] = useState('')
+
+  const listarUsuarios = () => {
+   axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users',{
+    headers:{
+      Authorization:'danyelle-candido-franklin'
+    }
+   }).then((response)=>{
+    console.log(response.data)
+    setlistaDeUsuarios(response.data)
+   }).catch((error)=>{console.log(error.code)
+    console.log(error.message)})
+  }
+
+  const criarUsuario = () =>{
+    const body = {
+      "name": inputName,
+      "email":inputEmail
+    }
+
+    axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users', body,{
+      headers:{
+        Authorization:'danyelle-candido-franklin'
+      }
+    }).then((response)=>{
+      alert('usuário criado com sucesso')
+      listarUsuarios()
+     }).catch((error)=>{console.log(error.code)
+      console.log(error.message)
+      alert('erro na criação')})
+
+  }
+
+
+/*   const procurarUsuario =() =>{
+
+  } */
+
+  const handleInputName =(e) => {
+    setInputName(e.target.value)
+  }
+
+  const handleInputEmail =(e) =>{
+    setInputEmail(e.target.value)
+  }
+
+  useEffect(listarUsuarios,[])
+
+  
+  return (
+    <div className="App">
+        <input value={inputName} onChange={handleInputName}></input>
+        <input value={inputEmail} onChange={handleInputEmail}></input>
+        <button onClick={criarUsuario}>send</button>
+
+        
+        
+
+        {listaDeUsuarios.map((usuario) =>{
+          return (
+            <li key={usuario.id}>{usuario.name}</li>
+          )
+        })}
+    </div>
+  );
+}
+ 
+export default App;
