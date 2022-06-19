@@ -6,7 +6,7 @@ const App = () => {
   const[listaDeUsuarios,setlistaDeUsuarios]=useState([])
   const [inputName, setInputName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
-
+  const [inputNameSearch, setInputNameSearch] = useState('')
 
   const listarUsuarios = () => {
    axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users',{
@@ -54,9 +54,18 @@ const App = () => {
 
   }
 
-/*   const procurarUsuario =() =>{
+  const procurarUsuario =(setInputNameSearch) =>{
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?${setInputNameSearch}`, {
+      headers:{
+        Authorization:'danyelle-candido-franklin'
+      }
+    }).then((response)=>{
+      console.log(response)
+     }).catch((error)=>{console.log(error.code)
+      console.log(error.message)
+      })
 
-  } */
+  }
 
   const handleInputName =(e) => {
     setInputName(e.target.value)
@@ -66,7 +75,9 @@ const App = () => {
     setInputEmail(e.target.value)
   }
 
-
+  const handleNameSearch =(e) =>{
+    setInputNameSearch(e.target.value)
+  }
 
   useEffect(listarUsuarios,[])
 
@@ -77,8 +88,8 @@ const App = () => {
         <input value={inputEmail} onChange={handleInputEmail}></input>
         <button onClick={criarUsuario}>send</button>
 
-        
-        
+        <input value={inputNameSearch} onChange={handleNameSearch}></input>       
+        <button onClick={procurarUsuario}>search</button>
 
         {listaDeUsuarios.map((usuario) =>{
           return (
