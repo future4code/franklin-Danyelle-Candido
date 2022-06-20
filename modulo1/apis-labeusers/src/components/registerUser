@@ -1,0 +1,45 @@
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
+import UsersList, {getAll}from "./usersList";
+
+const RegisterUser = () => {
+  const [inputRegister, setInputRegister] = useState('')
+
+  const registerNewUser = () => {
+
+    const body = {
+      name: inputRegister
+    }
+    axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists', body, {
+      headers: {
+        Authorization: "guilherme"
+      }
+    }).then((response) => {
+      console.log(response)
+      alert("resgistrado com sucesso")
+    }).catch((error => {
+      console.log(error)
+    }))
+  }
+
+  const handleInputNome = (event) => {
+    setInputRegister(event.target.value)
+  }
+
+  useEffect(<UsersList/>, []);
+  
+  return (
+    <div className="App">
+      <input value={inputRegister} onChange={handleInputNome}></input>
+      <button onClick={registerNewUser}>Registrar novo Usuario</button>
+      {userRecords.map((register) => {
+        return (
+          <li key={register.id}>{register.name}</li>
+        )
+      })}
+    </div>
+  );
+}
+
+export default RegisterUser;

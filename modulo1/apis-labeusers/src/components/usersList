@@ -1,0 +1,32 @@
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
+
+const UsersList = () => {
+  const [usersList, setUsersList] = useState([])
+  
+  const getAllUsers = () => {
+    
+    axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists', {
+      headers: {
+        Authorization: "guilherme"
+      }
+    }).then((response) => {
+        setUsersList(response.data.result.list)
+    }).catch((error) => { console.log(error.code) })
+  }
+
+  useEffect(getAllUsers, []);
+  
+  return (
+    <div className="UsersList">
+      {usersList.map((register) => {
+        return (
+          <li key={register.id}>{register.name}</li>
+        )
+      })}
+    </div>
+  );
+}
+
+export default UsersList;
