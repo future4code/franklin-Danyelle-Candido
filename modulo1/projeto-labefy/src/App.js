@@ -31,7 +31,7 @@ const App=()=> {
       }).catch(error => console.log(error.message));
   };
 
-  const removePlaylist = (id, name) => {
+  const removePlaylist = (id) => {
     axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`,
         {
           headers: { Authorization: 'danyelle-candido-franklin' }
