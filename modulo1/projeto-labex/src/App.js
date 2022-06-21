@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import backgroundImage from './assets/backgroundImage.jpg';
-import TravelList from "./components/Public/travelList";
-import AdmArea from "./components/Private/admArea";
 import Footer from "./components/static/footer";
 import Header from "./components/static/header";
 
@@ -22,8 +20,6 @@ function App() {
     <div>
       <Header/>
       <MainContainer >
-        <TravelList/>
-        <AdmArea/>
       </MainContainer>
       <Footer/>
     </div>
