@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useNavigate } from "react-router-dom";
+import {goBack } from '../../router/coordinator'
 
 const ErrorContainer = styled.div`
   display: flex;
@@ -10,19 +11,14 @@ const ErrorContainer = styled.div`
   background-color:pink;
 `
 
-
 function ErrorPage() {
 
   const navigate = useNavigate()
 
-  const goBack = () =>{
-    navigate(-1)
-  }
-
   return (
     <ErrorContainer >
       <p>Error 404: essa página não existe </p>
-      <button onClick={goBack}>voltar</button>
+      <button onClick={()=>goBack(navigate)}>voltar</button>
     </ErrorContainer>
   );
 }

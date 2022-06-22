@@ -18,7 +18,7 @@ function Router() {
               <Route path='/adm' element={<AdmAreaPage/>}/>
               <Route path='/adm/createtrip' element={<CreateTripPage/>}/>
               <Route path='/login' element={<LoginAreaPage/>}/>
-              <Route path='/adm/detailstrips' element={<TripDetailsPage/>}/>
+              <Route path='/adm/detailstrips/:id' element={<TripDetailsPage/>}/>
               <Route path='/trips/application' element={<ApplicationFormPage/>}/>
               <Route path='/trips' element={<TravelListPage/>}/>
               <Route path='*' element={<ErrorPage/>}/>

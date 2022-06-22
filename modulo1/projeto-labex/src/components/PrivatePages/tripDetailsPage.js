@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {useNavigate } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
+import {goBack } from '../../router/coordinator'
 
 const TripDetailsContainer = styled.div`
   display: flex;
@@ -12,17 +13,14 @@ const TripDetailsContainer = styled.div`
 function TripDetailsPage() {
 
   const navigate = useNavigate()
-
-  const goBack = () =>{
-    navigate(-1)
-  }
-
-
+  const {id} = useParams()
 
   return (
     <TripDetailsContainer >
-      <p>Trip Details</p>
-      <button onClick={goBack}>voltar</button>
+      {id==1 ? 
+      <div><p>Trip Details 1</p> <button onClick={()=>goBack(navigate)}>voltar</button></div>
+      :
+      <div><p>Trip Details 2</p><button onClick={()=>goBack(navigate)}>voltar</button></div>}
     </TripDetailsContainer>
   );
 }

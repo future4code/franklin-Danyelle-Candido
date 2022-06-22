@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useNavigate } from "react-router-dom";
+import {goToCreateTrip , goToDetailsTrip1 , goToDetailsTrip2 , goBack } from '../../router/coordinator';
 
 const AdmContainer = styled.div`
   display: flex;
@@ -14,24 +15,14 @@ function AdmAreaPage() {
 
   const navigate = useNavigate()
 
-  const goBack = () =>{
-    navigate(-1)
-  }
-
-  const goToCreateTrip = () =>{
-    navigate('/adm/createtrip')
-  }
-
-  const goToDetaisTrip = () =>{
-    navigate('/adm/detailstrips')
-  }
-
   return (
     <AdmContainer >
       <p>Area administrativa </p>
-      <button onClick={goToCreateTrip}>Criar viagem</button>
-      <button onClick={goToDetaisTrip}>Ver detalhes da viagem</button>
-      <button onClick={goBack}>voltar</button>
+      <button onClick={() => goToCreateTrip(navigate)}>Criar viagem</button>
+      <button onClick={() => goToDetailsTrip1(navigate)}>Ver detalhes da viagem 1</button>
+      <button onClick={() => goToDetailsTrip2(navigate)}>Ver detalhes da viagem 2</button>
+
+      <button onClick={()=>goBack(navigate)}>voltar</button>
     </AdmContainer>
   );
 }

@@ -13,6 +13,7 @@ const MainContainer = styled.div`
   background-image: url(${backgroundImage});
   color: white;
   height: 90vh;
+  font-size: 30px;
 `
 
 

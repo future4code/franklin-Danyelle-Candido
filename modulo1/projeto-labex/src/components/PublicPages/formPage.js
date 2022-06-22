@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {goBack,goToProducts } from '../../router/coordinator'
 
 const FormContainer = styled.div`
   display: flex;
@@ -15,13 +16,11 @@ function ApplicationFormPage() {
 
   const navigate = useNavigate()
 
-  const goBack = () =>{
-    navigate(-1)
-  }
   return (
     <FormContainer >
       <p>Application Form</p>
-      <button onClick={goBack}>voltar</button>
+      <button onClick={()=>goBack(navigate)}>voltar</button>
+      <button onClick={()=>goToProducts(navigate)}>Enviar</button>
     </FormContainer>
   );
 }

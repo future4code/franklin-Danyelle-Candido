@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useNavigate } from "react-router-dom";
+import {goBack } from '../../router/coordinator'
 
 
 const CreateTripContainer = styled.div`
@@ -15,14 +16,10 @@ const CreateTripContainer = styled.div`
 function CreateTripPage() {
   const navigate = useNavigate()
 
-  const goBack = () =>{
-    navigate(-1)
-  }
-
   return (
     <CreateTripContainer >
       <p>Create Trip Container</p>
-      <button onClick={goBack}>voltar</button>
+      <button onClick={()=>goBack(navigate)}>voltar</button>
     </CreateTripContainer>
   );
 }

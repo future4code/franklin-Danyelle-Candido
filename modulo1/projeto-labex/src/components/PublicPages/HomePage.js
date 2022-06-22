@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useNavigate } from "react-router-dom";
-
-
+import {goToLogin,goToProducts } from '../../router/coordinator'
 
 const HomeContainer = styled.div`
   display: flex;
@@ -16,20 +15,11 @@ function HomePage() {
   
   const navigate = useNavigate()
 
-  const goToLogin= ()=>{
-    navigate('/login')
-  } 
-
-  const goToProducts= ()=>{
-    navigate('/trips')
-  } 
-
-
   return (
     <HomeContainer >
       <p>Home Page</p>
-      <button onClick={goToLogin}>Login</button>
-      <button onClick={goToProducts}>Produtos</button>
+      <button onClick={()=>goToLogin(navigate)}>Login</button>
+      <button onClick={()=>goToProducts(navigate)}>Produtos</button>
     </HomeContainer>
   );
 }
