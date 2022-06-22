@@ -8,8 +8,6 @@ const TripDetailsContainer = styled.div`
   align-items: center;
   background-color:blueviolet;
 `
-
-
 function TripDetails() {
   return (
     <TripDetailsContainer >

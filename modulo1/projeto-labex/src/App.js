@@ -3,6 +3,7 @@ import styled from "styled-components";
 import backgroundImage from './assets/backgroundImage.jpg';
 import Footer from "./components/static/footer";
 import Header from "./components/static/header";
+import Router from "./router/Router";
 
 const MainContainer = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ function App() {
     <div>
       <Header/>
       <MainContainer >
+        <Router/>
       </MainContainer>
       <Footer/>
     </div>
