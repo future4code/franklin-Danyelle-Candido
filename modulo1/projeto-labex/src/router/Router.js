@@ -1,33 +1,25 @@
-import AdmArea from '../components/PrivatePages/admArea';
-import CreateTrip from '../components/PrivatePages/createTrip';
-import LoginArea from '../components/PrivatePages/loginArea';
-import TripDetail from '../components/PrivatePages/tripDetails';
-import ApplicationForm from '../components/PublicPages/ApplicationForm';
-import HomePage from '../components/PublicPages/HomePage';
-import TravelList from '../components/PublicPages/travelList';
-
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdmArea from '../components/PrivatePages/admArea';
-import CreateTrip from '../components/PrivatePages/createTrip';
-import LoginArea from '../components/PrivatePages/loginArea';
-import TripDetails from '../components/PrivatePages/tripDetails';
-import ApplicationForm from '../components/PublicPages/ApplicationForm';
-import HomePage from '../components/PublicPages/HomePage';
-import TravelList from '../components/PublicPages/travelList';
+import AdmAreaPage from '../components/PrivatePages/admAreaPage';
+import CreateTripPage from '../components/PrivatePages/createTripPage';
+import LoginAreaPage from '../components/PrivatePages/loginAreaPage';
+import TripDetailsPage from '../components/PrivatePages/tripDetailsPage';
+import ApplicationFormPage from '../components/PublicPages/formPage';
+import HomePage from '../components/PublicPages/homePage';
+import TravelListPage from '../components/PublicPages/travelListPage';
 
 function Router() {
 
     return (
       <BrowserRouter>
           <Routes>
-              <Route index element={<HomePage/>}/>
-              <Route path='/adm' element={<AdmArea/>}/>
-              <Route path='/adm/trips/createtrip' element={<CreateTrip/>}/>
-              <Route path='/login' element={<LoginArea/>}/>
-              <Route path='/adm/trips/details' element={<TripDetails/>}/>
-              <Route path='/trips/application' element={<ApplicationForm/>}/>
-              <Route path='/trips/list' element={<TravelList/>}/>
+              <Route path='/' element={<HomePage/>}/>
+              <Route path='/adm' element={<AdmAreaPage/>}/>
+              <Route path='/adm/trips/createtrip' element={<CreateTripPage/>}/>
+              <Route path='/login' element={<LoginAreaPage/>}/>
+              <Route path='/adm/trips/details' element={<TripDetailsPage/>}/>
+              <Route path='/trips/application' element={<ApplicationFormPage/>}/>
+              <Route path='/trips' element={<TravelListPage/>}/>
           </Routes>
       </BrowserRouter>
     );

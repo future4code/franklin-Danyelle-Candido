@@ -10,7 +10,7 @@ const FormContainer = styled.div`
 `
 
 
-function ApplicationForm() {
+function ApplicationFormPage() {
   return (
     <FormContainer >
       <p>Application Form</p>
@@ -18,4 +18,4 @@ function ApplicationForm() {
   );
 }
 
-export default ApplicationForm;
+export default ApplicationFormPage;

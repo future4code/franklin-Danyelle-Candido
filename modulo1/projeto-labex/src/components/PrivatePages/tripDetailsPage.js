@@ -8,7 +8,7 @@ const TripDetailsContainer = styled.div`
   align-items: center;
   background-color:blueviolet;
 `
-function TripDetails() {
+function TripDetailsPage() {
   return (
     <TripDetailsContainer >
       <p>Trip Details</p>
@@ -16,4 +16,4 @@ function TripDetails() {
   );
 }
 
-export default TripDetails;
+export default TripDetailsPage;

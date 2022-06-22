@@ -10,7 +10,7 @@ const AdmContainer = styled.div`
 `
 
 
-function AdmArea() {
+function AdmAreaPage() {
   return (
     <AdmContainer >
       <p>Area administrativa </p>
@@ -18,4 +18,4 @@ function AdmArea() {
   );
 }
 
-export default AdmArea;
+export default AdmAreaPage;

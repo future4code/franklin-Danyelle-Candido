@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import AdmArea from "./admArea";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -11,7 +10,7 @@ const LoginContainer = styled.div`
 `
 
 
-function LoginArea() {
+function LoginAreaPage() {
   return (
     <LoginContainer >
       <p>Área de Login</p>
@@ -19,4 +18,4 @@ function LoginArea() {
   );
 }
 
-export default LoginArea;
+export default LoginAreaPage;

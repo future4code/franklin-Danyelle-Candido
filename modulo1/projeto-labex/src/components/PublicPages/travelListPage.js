@@ -10,7 +10,7 @@ const TravelContainer = styled.div`
   background-color: green;
 `
 
-function TravelList() {
+function TravelListPage() {
   return (
     <TravelContainer >
       <p>Travel List</p>
@@ -18,4 +18,4 @@ function TravelList() {
   );
 }
 
-export default TravelList;
+export default TravelListPage;

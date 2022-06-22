@@ -10,7 +10,7 @@ const CreateTripContainer = styled.div`
 `
 
 
-function CreateTrip() {
+function CreateTripPage() {
   return (
     <CreateTripContainer >
       <p>Create Trip Container</p>
@@ -18,4 +18,4 @@ function CreateTrip() {
   );
 }
 
-export default CreateTrip;
+export default CreateTripPage;
