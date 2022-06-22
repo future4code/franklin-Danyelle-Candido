@@ -7,19 +7,21 @@ import TripDetailsPage from '../components/PrivatePages/tripDetailsPage';
 import ApplicationFormPage from '../components/PublicPages/formPage';
 import HomePage from '../components/PublicPages/homePage';
 import TravelListPage from '../components/PublicPages/travelListPage';
+import ErrorPage from '../components/PublicPages/errorPage';
 
 function Router() {
 
     return (
       <BrowserRouter>
           <Routes>
-              <Route path='/' element={<HomePage/>}/>
+              <Route index element={<HomePage/>}/>
               <Route path='/adm' element={<AdmAreaPage/>}/>
-              <Route path='/adm/trips/createtrip' element={<CreateTripPage/>}/>
+              <Route path='/adm/createtrip' element={<CreateTripPage/>}/>
               <Route path='/login' element={<LoginAreaPage/>}/>
-              <Route path='/adm/trips/details' element={<TripDetailsPage/>}/>
+              <Route path='/adm/detailstrips' element={<TripDetailsPage/>}/>
               <Route path='/trips/application' element={<ApplicationFormPage/>}/>
               <Route path='/trips' element={<TravelListPage/>}/>
+              <Route path='*' element={<ErrorPage/>}/>
           </Routes>
       </BrowserRouter>
     );

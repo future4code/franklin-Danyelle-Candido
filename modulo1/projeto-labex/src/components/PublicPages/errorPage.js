@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import {useNavigate } from "react-router-dom";
 
-const TripDetailsContainer = styled.div`
+const ErrorContainer = styled.div`
   display: flex;
   justify-content: center; 
   flex-direction: column; 
   align-items: center;
-  background-color:blueviolet;
+  background-color:pink;
 `
-function TripDetailsPage() {
+
+
+function ErrorPage() {
 
   const navigate = useNavigate()
 
@@ -17,14 +19,12 @@ function TripDetailsPage() {
     navigate(-1)
   }
 
-
-
   return (
-    <TripDetailsContainer >
-      <p>Trip Details</p>
+    <ErrorContainer >
+      <p>Error 404: essa página não existe </p>
       <button onClick={goBack}>voltar</button>
-    </TripDetailsContainer>
+    </ErrorContainer>
   );
 }
 
-export default TripDetailsPage;
+export default ErrorPage;
