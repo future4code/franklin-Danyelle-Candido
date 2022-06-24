@@ -5,7 +5,7 @@ export const goToLogin = (navigate)=>{
   } 
 
 export const goToProducts = (navigate)=>{
-    navigate('/trips')
+    navigate('/trips/list')
   } 
 
 export const goBack = (navigate) =>{
@@ -13,19 +13,19 @@ export const goBack = (navigate) =>{
   }
 
 export const goToCreateTrip = (navigate) =>{
-    navigate('/adm/createtrip')
+    navigate('/admin/trips/create')
   }
 
 export const goToDetailsTrip1 = (navigate) =>{
-    navigate('/adm/detailstrips/1')
+    navigate('/admin/trips/1')
   }
 
 export const goToDetailsTrip2 = (navigate) =>{
-    navigate('/adm/detailstrips/2')
+    navigate('/admin/trips/2')
   }
 
 export const goToAdmArea = (navigate) =>{
-    navigate('/adm')
+    navigate('/admin/trips/list')
   }
 
 export const goSingUp = (navigate) =>{

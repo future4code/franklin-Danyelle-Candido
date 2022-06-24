@@ -17,6 +17,9 @@ function TripDetailsPage() {
 
   return (
     <TripDetailsContainer >
+      <p>Candidatos Pendentes</p>
+      <p>Candidatos Aprovados</p>
+      
       {id==1 ? 
       <div><p>Trip Details 1</p> <button onClick={()=>goBack(navigate)}>voltar</button></div>
       :

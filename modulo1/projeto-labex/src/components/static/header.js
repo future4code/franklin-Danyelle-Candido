@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import logo from "../../assets/logo.png"
 
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: center; 
-  flex-direction: column; 
+  flex-direction: row; 
   align-items: center;
-  background-color: red;
+  justify-content: space-between;
+  margin: 10px 20px;
+`
+
+const Logo = styled.img`
+  align-items: left; 
+  border-radius: 50%;
 `
 
 function Header() {
   return (
     <HeaderContainer >
-      <p>hello sou a header</p>
+      <Logo src={logo}/>
+      <p>Space Birdperson</p>
     </HeaderContainer>
   );
 }
