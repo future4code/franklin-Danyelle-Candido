@@ -6,17 +6,19 @@ import DetailRecipe from "../pages/DetailRecipe";
 import FeedPage from "../pages/FeedPage";
 import LoginPage from "../pages/LoginPage";
 import SingUpPage from "../pages/SingUpPage";
+import Header from "../pages/static/Header";
 
 
 function Router() {
   return (
     <BrowserRouter>
+        <Header/>
         <Routes>
-            <Route path='/'  element={<LoginPage/>}/>
+            <Route path='/login'  element={<LoginPage/>}/>
             <Route path='/singup' element={<SingUpPage/>}/>
             <Route path='/recipe' element={<AddRecipe/>}/>
             <Route path='/recipe/id' element={<DetailRecipe/>}/>
-            <Route path='/recipe/feed' element={<FeedPage/>}/>
+            <Route path='/' element={<FeedPage/>}/>
             <Route path='*' element={<ErrorPage/>}/>
         </Routes>
     </BrowserRouter>

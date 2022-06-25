@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {goBack} from "../Router/coordinator"
+import Button from '@mui/material/Button';
 
 function SingUpPage() {
   const navigate = useNavigate()
@@ -8,7 +9,7 @@ function SingUpPage() {
   return (
     <div className="SingUpPage">
       <h1>Página de Cadastro</h1>
-      <button onClick={()=>goBack(navigate)}>voltar</button>
+      <Button variant='contained' color="primary" onClick={()=>goBack(navigate)}>voltar</Button>
     </div>
   );
 }

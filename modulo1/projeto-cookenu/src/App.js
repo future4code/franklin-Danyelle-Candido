@@ -1,16 +1,17 @@
 import React from "react";
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./constants/theme";
 import Footer from "./pages/static/Footer";
-import Header from "./pages/static/Header";
 import Router from "./Router/Router";
 
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-        <Router/>
+    <ThemeProvider theme={theme}>
+
+      <Router/>
       <Footer/>
-    </div>
+    </ThemeProvider>
   );
 }
 
