@@ -1,27 +1,22 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ErrorPage from "../pages/ErrorPage";
-import AddRecipe from "../pages/AddRecipe";
-import DetailRecipe from "../pages/DetailRecipe";
-import FeedPage from "../pages/FeedPage";
-import LoginPage from "../pages/LoginPage";
-import SingUpPage from "../pages/SingUpPage";
-import Header from "../pages/static/Header";
+import { Routes, Route } from 'react-router-dom';
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AddRecipe from "../pages/AddRecipePage/AddRecipe";
+import DetailRecipe from "../pages/DetailRecipePage/DetailRecipe";
+import FeedPage from "../pages/FeedPage/FeedPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import SingUpPage from "../pages/SingUpPage/SingUpPage";
 
-
-function Router() {
+function Router({setRightButtonText}) {
   return (
-    <BrowserRouter>
-        <Header/>
         <Routes>
-            <Route path='/login'  element={<LoginPage/>}/>
-            <Route path='/singup' element={<SingUpPage/>}/>
-            <Route path='/recipe' element={<AddRecipe/>}/>
-            <Route path='/recipe/id' element={<DetailRecipe/>}/>
-            <Route path='/' element={<FeedPage/>}/>
+            <Route exact path='/login'  element={<LoginPage setRightButtonText={setRightButtonText}/>}/>
+            <Route exact path='/singup' element={<SingUpPage setRightButtonText={setRightButtonText}/>}/>
+            <Route exact path='/recipe' element={<AddRecipe/>}/>
+            <Route exact path='/recipe/id' element={<DetailRecipe/>}/>
+            <Route exact index element={<FeedPage/>}/>
             <Route path='*' element={<ErrorPage/>}/>
         </Routes>
-    </BrowserRouter>
   );
 }
 export default Router;

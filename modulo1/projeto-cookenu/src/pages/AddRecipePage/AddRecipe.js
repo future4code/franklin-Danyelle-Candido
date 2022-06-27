@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {goBack} from "../Router/coordinator"
+import {goBack} from "../../Router/coordinator"
 import Button from '@mui/material/Button';
+import useProtectedPage from "../../hooks/useProtectPage";
 
 function AddRecipe() {
     const navigate = useNavigate()
+    useProtectedPage()
 
   return (
     <div className="AddRecipe">

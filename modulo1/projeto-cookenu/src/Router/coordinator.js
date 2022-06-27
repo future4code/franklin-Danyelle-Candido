@@ -12,8 +12,8 @@ export const goToAddRecipes = (navigate) => {
     navigate('recipe')
 }
 
-export const goToRecipeDetail = (navigate) => {
-    navigate('recipe/id')
+export const goToRecipeDetail = (navigate, id) => {
+    navigate(`recipe/${id}`)
 }
 
 export const goToRecipesList = (navigate) => {

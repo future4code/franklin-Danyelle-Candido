@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {goBack} from "../Router/coordinator"
+import {goBack} from "../../Router/coordinator"
 import Button from '@mui/material/Button';
 
 function ErrorPage() {
