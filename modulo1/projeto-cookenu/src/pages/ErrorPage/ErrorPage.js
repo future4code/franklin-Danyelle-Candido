@@ -1,16 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import {goBack} from "../../Router/coordinator"
-import Button from '@mui/material/Button';
+import { Typography } from "@mui/material";
+import {ErrorImage, ErrorPageContainer} from './styled'
+
 
 function ErrorPage() {
-  const navigate = useNavigate()
-  return (
-    <div className="ErrorPage">
-        <h1>Error 404</h1>
-        <Button variant='contained' color="primary" onClick={()=>goBack(navigate)}>voltar</Button>
-    </div>
-  );
+    return (
+      <ErrorPageContainer>
+{/*           <ErrorImage src={#} /> */}
+          <Typography color={'primary'} variant={'h4'} align={'center'}>Erro 404 - Página Não Encontrada</Typography>
+      </ErrorPageContainer>
+  )
 }
 
 export default ErrorPage;

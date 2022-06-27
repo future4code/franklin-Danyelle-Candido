@@ -1,5 +1,3 @@
-import React from "react";
-
 export const goToLogin = (navigate) => {
     navigate("/login")
 }
@@ -18,8 +16,4 @@ export const goToRecipeDetail = (navigate, id) => {
 
 export const goToRecipesList = (navigate) => {
     navigate('/')
-}
-
-export const goBack = (navigate) => {
-    navigate(-1)
 }

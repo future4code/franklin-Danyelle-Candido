@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import RecipeCard from "../../components/RecipeCard.js/RecipeCard";
+import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import useProtectedPage from "../../hooks/useProtectPage";
 import { RecipeListContainer, AddRecipeButton } from './styled';
 import useRequestData from "../../hooks/useRequestData";
-import {BASE_URL} from "../../constants/urls"
+import { BASE_URL } from "../../constants/urls";
 import { Add } from "@mui/icons-material";
 import { goToAddRecipes, goToRecipeDetail } from "../../Router/coordinator";
 import Loading from "../../components/Loading/Loading"

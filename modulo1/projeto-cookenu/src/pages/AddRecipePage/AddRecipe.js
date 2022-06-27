@@ -1,19 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import {goBack} from "../../Router/coordinator"
-import Button from '@mui/material/Button';
 import useProtectedPage from "../../hooks/useProtectPage";
+import {RecipeContainer, ScreenContainer} from './styled'
+import AddRecipeForm from "../../components/AddRecipeForm";
+import { Typography } from "@mui/material";
 
 function AddRecipe() {
-    const navigate = useNavigate()
     useProtectedPage()
 
-  return (
-    <div className="AddRecipe">
-      <h1>Adicionar Receita</h1>
-      <Button variant='contained' color="primary" onClick={()=>goBack(navigate)}>voltar</Button>
-    </div>
-  );
-}
+    return (
+      <ScreenContainer>
+        <RecipeContainer>
+          <Typography gutterBottom variant={'h4'} align={'center'} color={'textPrimary'}>Adicionar Nova Receita</Typography>
+          <AddRecipeForm/>
+        </RecipeContainer>
+      </ScreenContainer>
+    )
+  }
 
 export default AddRecipe;
