@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {useNavigate, useParams } from "react-router-dom";
 import {goBack } from '../../router/coordinator'
+import axios from "axios";
+import { useEffect } from "react";
 
 const TripDetailsContainer = styled.div`
   display: flex;
@@ -10,22 +12,35 @@ const TripDetailsContainer = styled.div`
   align-items: center;
   background-color:blueviolet;
 `
-function TripDetailsPage() {
+export const TripContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  max-width: 600px;
+  min-width: 300px;
+`
 
-  const navigate = useNavigate()
-  const {id} = useParams()
+
+
+
+function TripDetailsPage() {
+  useProtectedPage()
+  const params = useParams()
+  const trip= useRequestData([], `${BASE_URL}/{token}/trip/${params.id}`)[0]
 
   return (
-    <TripDetailsContainer >
-      <p>Candidatos Pendentes</p>
-      <p>Candidatos Aprovados</p>
-      
-      {id==1 ? 
-      <div><p>Trip Details 1</p> <button onClick={()=>goBack(navigate)}>voltar</button></div>
-      :
-      <div><p>Trip Details 2</p><button onClick={()=>goBack(navigate)}>voltar</button></div>}
-    </TripDetailsContainer>
-  );
+      <TripDetailsContainer>
+          {recipe ?
+              <TripContainer>
+                  <RecipeImage src={recipe.image} />
+                  <Typography gutterBottom align={'center'} variant={'h5'} color={'primary'}>{recipe.title}</Typography>
+                  <Typography align={'center'}>{recipe.description}</Typography>
+              </TripContainer>
+          :
+              <Loading/>
+          }
+      </TripDetailsContainer>
+  )
 }
 
 export default TripDetailsPage;
