@@ -18,7 +18,7 @@ function FeedPage() {
     goToRecipeDetail(navigate, id)
   }
 
-  const recipeCards = recipes.map((recipe) => {
+  const recipeCards = recipes && recipes.map((recipe) => {
     return (
       <RecipeCard
         key={recipe.recipe_id}
