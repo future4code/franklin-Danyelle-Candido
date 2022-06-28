@@ -9,7 +9,7 @@ import HomePage from '../components/PublicPages/homePage';
 import TravelListPage from '../components/PublicPages/travelListPage';
 import ErrorPage from '../components/PublicPages/errorPage';
 
-function Router() {
+const Router = () => {
 
     return (
       <BrowserRouter>
