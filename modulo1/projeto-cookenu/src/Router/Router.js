@@ -14,7 +14,7 @@ function Router({setRightButtonText}) {
             <Route exact path='/login'  element={<LoginPage setRightButtonText={setRightButtonText}/>}/>
             <Route exact path='/singup' element={<SingUpPage setRightButtonText={setRightButtonText}/>}/>
             <Route exact path='/recipe' element={<AddRecipe/>}/>
-            <Route exact path='/recipe/id' element={<DetailRecipe/>}/>
+            <Route exact path='/recipe/:id' element={<DetailRecipe/>}/>
             
             <Route path='*' element={<ErrorPage/>}/>
         </Routes>

@@ -7,11 +7,11 @@ export const goToSingUp = (navigate) => {
 }
 
 export const goToAddRecipes = (navigate) => {
-    navigate('recipe')
+    navigate('/recipe')
 }
 
 export const goToRecipeDetail = (navigate, id) => {
-    navigate(`recipe/${id}`)
+    navigate(`/recipe/${id}`)
 }
 
 export const goToRecipesList = (navigate) => {

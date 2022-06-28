@@ -1,7 +1,7 @@
 import React from 'react'
-import { CardActionArea } from '@mui/material'
+import {CardActionArea} from '@mui/material'
 import {CardMedia} from '@mui/material'
-import {Typography} from '@mui/material'
+import { Typography } from '@mui/material'
 import { RecipeCardContainer, RecipeCardContent } from './styled'
 
 const RecipeCard = (props) => {
@@ -18,7 +18,7 @@ const RecipeCard = (props) => {
         />
         <RecipeCardContent>
           <Typography align={'center'}>
-            {props.title.toUpperCase()}
+            {props.title}
           </Typography>
         </RecipeCardContent>
       </CardActionArea>
