@@ -12,16 +12,25 @@ const LoginContainer = styled.div`
 `
 
 function LoginAreaPage() {
-
+  useUnprotectedPage()
   const navigate = useNavigate()
-
   return (
-    <LoginContainer >
-      <p>Área de Login</p>
-      <button onClick={()=>goToAdmArea(navigate)}>entrar</button>
-      <button onClick={()=>goBack(navigate)}>voltar</button>
-    </LoginContainer>
-  );
+      <ScreenContainer>
+          <LogoImage src={'#'} />
+          <LoginForm/>
+          <SignUpButtonContainer>
+              <Button
+                  onClick={() => goToSignUp(navigate)}
+                  type={"submit"}
+                  fullWidth
+                  variant={"text"}
+                  color={"primary"}
+              >
+                  Não possui conta? Cadastre-se
+                  </Button>
+          </SignUpButtonContainer>
+      </ScreenContainer>
+  )
 }
 
 export default LoginAreaPage;

@@ -1,28 +1,37 @@
 import React from "react";
-import styled from "styled-components";
-import logo from "../../assets/logo.png"
+import AppBar from "@mui/material/AppBar";
+import {StyledToolbar} from "./styled";
+import {Button} from "@mui/material/Button";
+import {goToRecipesList, goToLogin} from "../../routes/coordinator"
+import {useNavigate} from "react-router-dom"
 
+const Header = ({rightButtonText, setRightButtonText}) => {
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
 
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: row; 
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 20px;
-`
+    const logout = () => {
+        localStorage.removeItem("token")
+    }
 
-const Logo = styled.img`
-  align-items: left; 
-  border-radius: 50%;
-`
+    const rightButtonAction = () => {
+        if (token){
+            logout()
+            setRightButtonText("Login")
+            goToLogin(navigate)
+        } else {
+            goToLogin(navigate)
+        }
+    }
 
-function Header() {
-  return (
-    <HeaderContainer >
-      <Logo src={logo}/>
-      <p>Space Birdperson</p>
-    </HeaderContainer>
-  );
+    return (
+        <AppBar position="static">
+            <StyledToolbar>
+                <Button onClick={() => goToRecipesList(navigate)} color="inherit">Labex</Button>
+                <Button onClick={rightButtonAction} color="inherit">{rightButtonText}</Button>
+            </StyledToolbar>
+        </AppBar>
+    )
 }
 
-export default Header;
+export default Header
+
