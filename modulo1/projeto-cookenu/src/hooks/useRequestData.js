@@ -9,9 +9,10 @@ const useRequestData = (initialData, url) => {
       headers: {
         Authorization: localStorage.getItem('token')
       }
-    })
+    }) 
       .then((response) => {
         setData(response.data)
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)

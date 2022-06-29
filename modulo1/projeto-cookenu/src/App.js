@@ -12,6 +12,7 @@ function App() {
   const [rightButtonText, setRightButtonText] = useState(token? "Logout" : "Login")
 
   return (
+
     <ThemeProvider theme={theme}>
       <BrowserRouter>
       <Header rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
