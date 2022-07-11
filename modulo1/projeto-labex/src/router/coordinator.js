@@ -1,33 +1,22 @@
-import React from "react";
-
-export const goToLogin = (navigate)=>{
-    navigate('/login')
+export const irParaLogin = (navigate)=>{
+    navigate(`/login`)
+  } 
+  
+export const irParaCriarViagem = (navigate) =>{
+      navigate(`/admin/viagens/criar`)
+  }
+  
+export const irParaDetalhesDaViagem = (navigate) =>{
+      navigate(`/admin/viagens/`)
+  }
+export const irParaViagens = (navigate)=>{
+    navigate(`/publico/viagens/lista`)
   } 
 
-export const goToProducts = (navigate)=>{
-    navigate('/trips/list')
-  } 
-
-export const goBack = (navigate) =>{
+export const voltar = (navigate) =>{
     navigate(-1)
   }
 
-export const goToCreateTrip = (navigate) =>{
-    navigate('/admin/trips/create')
-  }
-
-export const goToDetailsTrip1 = (navigate) =>{
-    navigate('/admin/trips/1')
-  }
-
-export const goToDetailsTrip2 = (navigate) =>{
-    navigate('/admin/trips/2')
-  }
-
-export const goToAdmArea = (navigate) =>{
-    navigate('/admin/trips/list')
-  }
-
-export const goSingUp = (navigate) =>{
-    navigate('/trips/application')
+export const irParaAreaAdm = (navigate) =>{
+    navigate('/admin/viagens')
   }

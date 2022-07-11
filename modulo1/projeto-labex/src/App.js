@@ -1,36 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-import Footer from "./components/static/footer";
-import Header from "./components/static/header";
 import Router from "./router/Router";
-
-const GlobalContainer = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  background-color: black;
-  color: white;
-  font-size: 30px;
-`
-
-const MainContainer = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  background-color: black;
-  color: white;
-  height: 42vw;
-  font-size: 30px;
-`
-
+import { MenuContainer } from "./Estilizacao";
+import { Cabecalho } from "./components/static/Cabecalho";
+import { Rodape } from "./components/static/Rodape";
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./constants/theme";
 
 function App() {
   return (
-    <GlobalContainer>
-      <Header/>
-      <MainContainer >
+    <ThemeProvider theme={theme}>
+      <Cabecalho/>
+      <MenuContainer >
         <Router/>
-      </MainContainer>
-      <Footer/>
-    </GlobalContainer>
+      </MenuContainer>
+      <Rodape/>
+    </ThemeProvider>
   );
 }
 
