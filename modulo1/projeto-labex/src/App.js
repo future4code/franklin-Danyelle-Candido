@@ -1,36 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-import Footer from "./components/static/footer";
-import Header from "./components/static/header";
-import Router from "./router/Router";
-
-const GlobalContainer = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  background-color: black;
-  color: white;
-  font-size: 30px;
-`
-
-const MainContainer = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  background-color: black;
-  color: white;
-  height: 42vw;
-  font-size: 30px;
-`
-
+import Router from "./router/router";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <GlobalContainer>
+    <div>
       <Header/>
-      <MainContainer >
         <Router/>
-      </MainContainer>
       <Footer/>
-    </GlobalContainer>
+    </div>
   );
 }
 
