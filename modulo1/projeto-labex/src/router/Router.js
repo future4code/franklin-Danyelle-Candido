@@ -1,30 +1,29 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdmAreaPage from '../components/PrivatePages/admAreaPage';
-import CreateTripPage from '../components/PrivatePages/createTripPage';
-import LoginAreaPage from '../components/PrivatePages/loginAreaPage';
-import TripDetailsPage from '../components/PrivatePages/tripDetailsPage';
-import ApplicationFormPage from '../components/PublicPages/formPage';
-import HomePage from '../components/PublicPages/homePage';
-import TravelListPage from '../components/PublicPages/travelListPage';
-import ErrorPage from '../components/PublicPages/errorPage';
+import React from "react";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import AdmViagem from "../pages/AdmViagem";
+import CriarViagem from "../pages/CriarViagem";
+import DetalhesDaViagem from "../pages/DetalhesDaViagem";
+import FormDeCandidatura from "../pages/FormDeCandidatura";
+import ListaDeViagem from "../pages/ListaDeViagem";
+import PagErro from "../pages/PagErro";
+import PagInicial from "../pages/PagInicial";
+import PagLogin from "../pages/PagLogin";
 
-const Router = () => {
 
+function Router() {
     return (
-      <BrowserRouter>
+        <BrowserRouter>
           <Routes>
-              <Route index element={<HomePage/>}/>
-              <Route path='/admin/trips/list' element={<AdmAreaPage/>}/>
-              <Route path='/admin/trips/create' element={<CreateTripPage/>}/>
-              <Route path='/login' element={<LoginAreaPage/>}/>
-              <Route path='/admin/trips/:id' element={<TripDetailsPage/>}/>
-              <Route path='/trips/application' element={<ApplicationFormPage/>}/>
-              <Route path='/trips/list' element={<TravelListPage/>}/>
-              <Route path='*' element={<ErrorPage/>}/>
+              <Route exact path='/' element={<PagInicial/>}/>
+              <Route exact path='/login'  element={<PagLogin/>}/>
+              <Route exact path='/AdmViagem'  element={<AdmViagem/>}/>
+              <Route exact path='/AdmViagem/CriarViagem'  element={<CriarViagem/>}/>
+              <Route exact path='/AdmViagem/DetalhesDaViagem'  element={<DetalhesDaViagem/>}/>
+              <Route exact path='/ListaDeViagem/FormDeCandidatura'  element={<FormDeCandidatura/>}/>
+              <Route exact path='/ListaDeViagem'  element={<ListaDeViagem/>}/>
+              <Route path='*' element={<PagErro/>}/>
           </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
     );
   }
-
-export default Router;
+  export default Router;
