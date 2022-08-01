@@ -24,25 +24,4 @@ const App = () => {
 */ 
 
 
-/* Requisitos
-Página de produtos
-Visualizar produtos
-Foto
-Nome
-Preço
-Filtrar por
-Valor mínimo
-Valor máximo
-Nome do produto (desconsiderando capitalização e acentos)
-Adicionar produtos ao carrinho
-Página do carrinho
-Visualizar produtos no carrinho
-Produtos iguais devem ser um único item, com a quantidade indicada
-Visualizar preço total do carrinho
-Deve ser possível finalizar a compra
-Coletar email do usuário
-Confirmar email digitado e valor final
-Informar que informações para pagamento serão enviadas
-Limpar carrinho e voltar para página de produtos */
-
 export default App;

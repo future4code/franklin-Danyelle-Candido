@@ -13,12 +13,4 @@ test("Teste 1", () => {
   );
 });
 
-test("Teste 2", () => {
-  render(<App />);
 
-  userEvent.click(
-    screen.getByRole("button", {
-      name: /carrinho/i
-    })
-  );
-});
