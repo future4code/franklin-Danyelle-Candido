@@ -3,7 +3,7 @@ import { goToLogin } from "../Router/coordinator"
 import { useEffect } from "react"
 
 const useProtectedPage = () =>{
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     useEffect(()=>{
         const token = localStorage.getItem('token')
         if(!token){

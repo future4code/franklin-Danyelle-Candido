@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const useRequestData = (initialData, url) => {
-  const [data, setData] = useState(initialData)
+const useRequestData = (url) => {
+  const navigate = useNavigate();
+  const [data, setData] = useState();
 
   useEffect(() => {
-    axios.get(url , {
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    })
+    axios
+      .get(url)
       .then((response) => {
-        setData(response.data.token)
+        setData(response.data);
       })
       .catch((error) => {
-        console.log(error)
-        alert('Ocorreu um erro, tente novamente')
-      })
-  }, [url])
+        if (error.respose.status === 404) {
+          navigate("/404");
+        }
+      });
+  }, [url, navigate]);
 
-  return (data)
-}
+  return [data];
+};
 
-export default useRequestData
+export default useRequestData;
