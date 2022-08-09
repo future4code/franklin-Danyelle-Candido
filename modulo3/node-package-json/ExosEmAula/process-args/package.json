@@ -1,0 +1,13 @@
+{
+  "name": "node-package-json",
+  "version": "1.0.0",
+  "description": "project learning node ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "danyelle": "node index.js Danyelle Preto",
+    "start": "node index.js"
+  },
+  "author": "Danyelleac",
+  "license": "ISC"
+}

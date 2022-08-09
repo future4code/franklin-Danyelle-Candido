@@ -1,0 +1,15 @@
+{
+  "name": "Desafios",
+  "version": "1.0.0",
+  "description": "desafios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "exo1": "node exo1.js",
+    "exo2": "node exo2.js",
+    "exo3": "node exo3.js"
+  },
+  "keywords": [],
+  "author": "Danyelleac",
+  "license": "ISC"
+}

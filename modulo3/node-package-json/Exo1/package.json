@@ -1,0 +1,13 @@
+{
+  "name": "Exo1",
+  "version": "1.0.0",
+  "description": "exercicio 1 labenu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Danyelleac",
+  "license": "ISC"
+}
