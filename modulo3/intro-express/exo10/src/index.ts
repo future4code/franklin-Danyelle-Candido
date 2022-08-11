@@ -26,12 +26,14 @@ app.listen(3003,()=>{
     console.log("Server is running in http://localhost:3003")
 })
 
+//postagens e usuarios
 app.get('/feedpage',(request:Request,response:Response)=>{
     const feed:user[] =userAndPosts
     response.status(202).send(feed)
 
 })
 
+//postagens por usuario
 app.get('/feedpage/:id',(request:Request,response:Response)=>{
     const idPerson = Number(request.params.id)
 
@@ -43,6 +45,7 @@ app.get('/feedpage/:id',(request:Request,response:Response)=>{
 
 })
 
+//criando postagem
 app.post("/createPost/:id",(request:Request,response:Response)=>{
     const idPerson = Number(request.params.id)
 
@@ -56,3 +59,33 @@ app.post("/createPost/:id",(request:Request,response:Response)=>{
    response.status(201).send(findPerson)
 
   })
+
+  //deletando postagem
+
+  app.delete("/posts/:id", (request: Request, response: Response) => {
+    const idPerson = Number(request.params.id)
+    const postId = Number(request.query.postId);
+
+    const findPerson = userAndPosts.find((user)=>{
+        return user.id === idPerson
+    })//procuro a pessoa
+    
+    const deletarDado= findPerson?.postagens.filter((post) => {
+        return post.id !== postId
+    })
+
+    console.log(deletarDado)
+    response.send(deletarDado);
+});
+
+  //deletando usuario
+
+  app.delete("/users/:id", (request: Request, response: Response) => {
+    const idPerson = Number(request.params.id)
+    
+    const deletarPerson= userAndPosts?.filter((user) => {
+        return user.id !== idPerson
+    })
+
+    response.send(deletarPerson);
+});

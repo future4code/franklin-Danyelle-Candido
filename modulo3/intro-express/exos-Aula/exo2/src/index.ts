@@ -51,94 +51,6 @@ app.get('/playlists',(request:Request,response:Response)=>{
     response.status(200).send(result)   
 })
 
-/* 
-//Get Playlist Tracks
-
-app.get('/playlists/:playlistId/tracks',(request:Request,response:Response)=>{
-    
-    const token = request.headers.authorization
-    
-    const playlistTrackId = Number(request.params.id)
-    const trackId = [{id:1,playlist:'Samba'},{id:2,playlist:'Reggae'}]
-    
-    const acharTrack= trackId.find((track)=>{
-        return track.id === playlistTrackId
-    })
-    if(!token){
-        response.status(401).send({message:'Unauthorized'})
-        
-    }else if(!acharTrack){
-        response.status(401).send({message:'Unauthorized'})
-    }
-    response.status(200).send({
-        "result": {
-            "quantity": "number",
-            "tracks": [ 
-                {
-                    "id": "string", 
-                    "name": "string", 
-                    "artist": "string",
-                    "url": "string"
-                }
-            ]
-        }
-    })
-
-    
-})
-//Delete Playlist
-
-app.delete('/playlists/:playlistId',(request:Request,response:Response)=>{
-    
-    const token = request.headers.authorization
-    
-    const playlistId = Number(request.params.id)
-    const arrayId = [{id:1,playlist:'Samba'},{id:2,playlist:'Reggae'}]
-    
-    const acharPlaylist= arrayId.find((playlist)=>{
-        return playlist.id === playlistId
-    })
-
-
-    if(!token){
-        response.status(401).send({message:'Unauthorized'})
-        
-    }else if(!acharPlaylist){
-        response.status(401).send({message:'Unauthorized'})
-    }
-    response.status(200).send({message:'Deleted Playlist'})
-
-})
-
-//Delete Track
-app.delete('playlists/:playlistId/tracks/:trackId',(request:Request,response:Response)=>{
-    
-    const token = request.headers.authorization
-    
-    const playlistId = Number(request.params.id)
-    const arrayId = [{id:1,playlist:'Samba'},{id:2,playlist:'Reggae'}]
-    
-    const acharPlaylist= arrayId.find((playlist)=>{
-        return playlist.id === playlistId
-    })
-
-    const playlistTrackId = Number(request.params.id)
-    const trackId = [{id:1,musica:'Clayton Rasta'},{id:2,musica:'Cabeça de Gelo'}]
-    
-    const acharTrack= trackId.find((track)=>{
-        return track.id === playlistTrackId
-    })
-
-    if(!token){
-        response.status(401).send({message:'Unauthorized'})
-        
-    }else if(!acharPlaylist || !acharTrack){
-        response.status(401).send({message:'Unauthorized'})
-    }
-    response.status(200).send({message:'Deleted track'})
-
-}) */
-
 //buscando playlist por Id
 app.get('/playlists/:id',(request:Request,response:Response)=>{
 
@@ -157,7 +69,7 @@ app.get('/playlists/:id',(request:Request,response:Response)=>{
     response.status(200).send(findPlaylist)   
 })
 
-
+//buscando musica
   app.get("/tracks", (req, res) => {
     const playlistId = req.query.id
   
@@ -222,52 +134,3 @@ app.get('/playlists/:id',(request:Request,response:Response)=>{
     //encontrar playlist e adicionar meu body nesta playlist
     response.send(findPlaylist)
   })
-
-  
-  app.delete("/playlist", (req, res) => {
-    const id = req.query.id
-  
-    users.forEach((user) => {
-      user.playlists = user.playlists.map((playlist: any) => {
-        if (playlist.id === id) {
-          return {}
-        }
-        return playlist
-      });
-    })
-  
-    res.status(200).send(users)
-  })
-  
-  app.delete("/track", (req, res) => {
-    const trackId = req.query.trackId
-    const playlistId = req.query.playlistId
-  
-    const allPlaylists = users
-      .map((user: any) => {
-        return user.playlists;
-      })
-      .flat(1);
-    for (let i = 0; i < = allPlaylists.toLocaleString; i++) {
-      allPlaylists[i]
-    }
-  
-    for (let playlist of allPlaylists) {
-      playlist
-    }
-  
-    allPlaylists.forEach((playlist: any) => {
-      if (playlist.id === playlistId) {
-         playlist.tracks = playlist.tracks.map((track: any) => {
-           if (track.id === trackId) {
-             return {};
-           }
-           return track;
-         });
-      }
-    })
-  
-    res.status(200).send(allPlaylists)
-  })
-
-
