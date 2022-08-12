@@ -1,75 +1,66 @@
 
-  export const userAndPosts = [
+  export const people = [
     {
        id: 1,
-       name:'vitor-hugo-lopes',
-       email: "Sincere@april.biz",
-       phone: "1-770-736-8031 x56442",
-       website: "hildegard.org",
-       postagens: [
+       name:'Maria Do Bairro',
+       Tasklist: [
             {
               id: 1,
-              title: "vitor111sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-              body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+              title: "Limpar a Casa",
+              completed: true
             },
             {
               id: 2,
-              title: "vitor2222sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-              body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+              title: "chorar e sofrer",
+              completed: false
             },
             {
               id: 3,
-              title: "vitor3333sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-              body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+              title: "se apaixonar",
+              completed: true
             }
         ]
     },
     {
       id: 2,
-      name:'Martina',
-      email: "Martina@april.biz",
-      phone: "1-770-736-8031-55352",
-      website: "martina.org",
-      postagens: [
-           {
-             id: 1,
-             title: "MARTINA1111sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-             body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-           },
-           {
-             id: 2,
-             title: "MARTINA2222sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-             body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-           },
-           {
-             id: 3,
-             title: "MARTINA3333sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-             body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-           }
-       ]
+      name:'Carminha',
+      Tasklist: [
+        {
+          id: 1,
+          title: "colocar um look branco",
+          completed: true
+        },
+        {
+          id: 2,
+          title: "pintar os cabelos ",
+          completed: false
+        },
+        {
+          id: 3,
+          title: "dar um golpe",
+          completed: true
+        }
+    ]
     },
     {
       id: 3,
-      name:'LEIRA',
-      email: "leira@april.biz",
-      phone: "1-770-73fdfdf6-8031 x56442",
-      website: "leira.org",
-      postagens: [
-          {
-            id: 1,
-            title: "Leira1111 sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-          },
-          {
-            id: 2,
-            title: "Leira2222- sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-          },
-          {
-            id: 3,
-            title: "Leira333 sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-          }
-      ]
+      name:'Beth a Feia',
+      Tasklist: [
+        {
+          id: 1,
+          title: "fofocar com as secretarias",
+          completed: true
+        },
+        {
+          id: 2,
+          title: "se apaixonar pelo seu armando",
+          completed: false
+        },
+        {
+          id: 3,
+          title: "ficar linda",
+          completed: true
+        }
+    ]
     },
 ]

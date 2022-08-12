@@ -1,24 +1,22 @@
 import express, { Request, Response} from 'express'
 import cors from 'cors'
-import { userAndPosts } from "./data"//achei melhor colocar junto porque fica amarrado , da outra forma acho que pode haver falhas por exemplo um usuario ser excluido e por algum motivo os posts permanecerem 
+import { people } from "./data"//exercicio 3
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
-type posts= {
+//exercício 2 -tipo
+type task= {
         id: number,
         title: string,
-        body: string
+        completed: boolean
       }
 
 type user= {
     id: number,
     name:string,
-    email:string,
-    phone:string,
-    website: string,
-    postagens: posts[]
+    Tasklist: task[]
 }
 
 
@@ -26,66 +24,62 @@ app.listen(3003,()=>{
     console.log("Server is running in http://localhost:3003")
 })
 
-//postagens e usuarios
-app.get('/feedpage',(request:Request,response:Response)=>{
-    const feed:user[] =userAndPosts
-    response.status(202).send(feed)
+//exo 1-ping e pong 
+app.get('/ping',(request:Request,response:Response)=>{
+    response.status(202).send('pong')
 
 })
 
-//postagens por usuario
-app.get('/feedpage/:id',(request:Request,response:Response)=>{
+
+//exo 4-A fazer
+app.get('/list/:id/completed',(request:Request,response:Response)=>{
+    const idCompleted = Boolean(request.params.id)
+
+
+    response.status(202).send(idCompleted)
+
+})
+
+//exo5
+app.post("/createTask/:id",(request:Request,response:Response)=>{
     const idPerson = Number(request.params.id)
 
-    const findPerson = userAndPosts.filter((user)=>{
+    const {id,title,completed} = request.body
+
+    const findPerson = people.find((user)=>{
         return user.id === idPerson
     })
 
-    response.status(202).send(findPerson)
-
-})
-
-//criando postagem
-app.post("/createPost/:id",(request:Request,response:Response)=>{
-    const idPerson = Number(request.params.id)
-
-    const {id,title,body} = request.body
-
-    const findPerson = userAndPosts.find((user)=>{
-        return user.id === idPerson
-    })//procuro a pessoa
-
-   findPerson?.postagens.push({id,title,body})
+   findPerson?.Tasklist.push({id,title,completed})
    response.status(201).send(findPerson)
-
   })
 
-  //deletando postagem
+//ex06-  A Fazer
 
-  app.delete("/posts/:id", (request: Request, response: Response) => {
+//exo 7
+  app.delete("/task/:id", (request: Request, response: Response) => {
     const idPerson = Number(request.params.id)
     const postId = Number(request.query.postId);
 
-    const findPerson = userAndPosts.find((user)=>{
+    const findPerson = people.find((user)=>{
         return user.id === idPerson
     })//procuro a pessoa
     
-    const deletarDado= findPerson?.postagens.filter((post) => {
-        return post.id !== postId
+    const deletarTask= findPerson?.Tasklist.filter((task) => {
+        return task.id !== postId
     })
 
-    console.log(deletarDado)
-    response.send(deletarDado);
+    response.send(deletarTask);
 });
 
-  //deletando usuario
+//exo8
+app.get('/list/:id',(request:Request,response:Response)=>{
+    const id = Number(request.params.id)
 
-  app.delete("/users/:id", (request: Request, response: Response) => {
-    const idPerson = Number(request.params.id)
+    const findPerson = people.find((user)=>{
+        return user.id === id
+    })
     
-    const deletarPerson= userAndPosts?.filter((user) => {
-        return user.id !== idPerson
-    })
+    response.status(202).send(findPerson)
 
-    response.send(deletarPerson);
-});
+})
