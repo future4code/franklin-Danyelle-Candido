@@ -1,50 +1,40 @@
-type conta={
-    nome:string,
-    cpf:string,
-    dataNasc:number
-}
+import express, { Request, Response} from 'express'
+import cors from 'cors'
+import { correntistas, correntista,extrato } from "./data"
 
-type compra={
-    valor:number,
-    data:number,
-    descricao:string
-}
+const app = express()
+app.use(express.json())
+app.use(cors())
 
-let maiorDeIdade:boolean=false
-const usuarios:Array<conta>=[]
-const nome:string=""
-const cpf:string=""
-const dataNasc:string=""
-const saldo:number=0
-const extrato:Array<compra>=[]
-const id:string=cpf
+app.listen(3003,()=>{
+    console.log("Server is running in http://localhost:3003 view documentation " )
+})
 
-function validarIdade(age:number):void{
-    if(age>=18){
-        maiorDeIdade=true;
+//listar correntistas
+app.get('/listUsers',(req:Request,res:Response)=>{
+    
+    const listarCorrentistas = correntistas
+    
+    res.status(201).send(listarCorrentistas)
+
+})
+
+//criar conta
+app.post('/createAccount',(req:Request,res:Response)=>{
+    
+    const listarCorrentistas = correntistas
+    const {cpf,name,dataNascimento} = req.body
+
+    const novaConta : correntista ={
+        cpf,
+        name,
+        dataNascimento,
+        saldo:0,
+        extrato:[],
     }
-}
 
-function criarConta(){
+    listarCorrentistas?.push(novaConta)
 
-}
+    res.status(201).send(listarCorrentistas)
 
-function pegarSaldo(){
-
-}
-
-function AdicionarSaldo(){
-
-}
-
-function PagarConta(){
-
-}
-
-function transfInterna(){
-
-}
-
-
-
-console.log("Hello Bank")
+})
