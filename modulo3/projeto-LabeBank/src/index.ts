@@ -15,7 +15,19 @@ app.get('/listUsers',(req:Request,res:Response)=>{
     
     const listarCorrentistas = correntistas
     
+    
     res.status(201).send(listarCorrentistas)
+
+})
+
+app.get('/listUsers/:cpf',(req:Request,res:Response)=>{
+    const cpf =req.params.cpf
+    const listarCorrentistas = correntistas.find((correntista)=> correntista.cpf ===cpf   )
+
+    const name = listarCorrentistas?.name
+    const saldo = listarCorrentistas?.saldo
+
+    res.status(201).send(`${name} seu saldo é ${saldo}`)
 
 })
 
@@ -50,7 +62,22 @@ app.post('/createAccount',(req:Request,res:Response)=>{
         
     }
 
-    if(maiorIdade(dataNascimento)){
+    function contaExistente(listarCorrentistas:correntista[]):boolean{
+        let contaexistente:boolean =false
+
+        for(let i =0; i<listarCorrentistas.length;i++){
+            if(listarCorrentistas[i].cpf === cpf){
+                contaexistente = true
+            }
+        }
+
+        return contaexistente
+        
+    }
+
+    if(contaExistente(listarCorrentistas)){
+        res.status(400).send({message:"Conta existente, o usuário já possui conta na Labebank entre em contato com (11)111111 para mais informações"})
+    }else if(maiorIdade(dataNascimento)){
 
         const novaConta : correntista ={
             cpf,
