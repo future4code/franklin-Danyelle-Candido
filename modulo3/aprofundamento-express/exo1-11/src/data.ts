@@ -1,5 +1,18 @@
+//exercício 2 -tipo
+type task= {
+  id: number,
+  title: string,
+  completed: boolean
+}
 
-  export const people = [
+type user= {
+id: number,
+name:string,
+Tasklist: task[]
+}
+
+//exo3
+  export const people:user[] = [
     {
        id: 1,
        name:'Maria Do Bairro',
