@@ -50,15 +50,29 @@ A query acima faz um filtro selecionando os nomes que começão com A ou J e dep
 ![Captura de Tela 2022-08-16 às 11 08 48](https://user-images.githubusercontent.com/90638175/184900507-dc837366-4f5d-410d-be6c-1a03f91737a9.png)
 
 
-## EXO 5 🚀 
-
+## EXO 5 🚀
 R:
+![Captura de Tela 2022-08-16 às 11 27 44](https://user-images.githubusercontent.com/90638175/184904999-8699531e-2e88-4a7c-80da-09bd07a422fa.png)
+
+R:![Captura de Tela 2022-08-16 às 11 27 10](https://user-images.githubusercontent.com/90638175/184904841-30bf7735-db0e-4bd0-8d04-578fc1bcd27e.png)
+
 
 ## EXO 6 🚀 
 
-R:
+R:![Captura de Tela 2022-08-16 às 11 31 30](https://user-images.githubusercontent.com/90638175/184905800-70184ea6-fac8-4c34-8b40-d1d8ec102d37.png)
+
+![Captura de Tela 2022-08-16 às 11 32 37](https://user-images.githubusercontent.com/90638175/184906019-267ea53d-f876-4d54-a8d5-a89a6705b053.png)
+
+![Captura de Tela 2022-08-16 às 11 34 22](https://user-images.githubusercontent.com/90638175/184906429-11af3648-1c7d-465f-9625-8fafc4a74bc9.png)
+
 
 ## EXO 7 🚀 
 
-R:
+R:![Captura de Tela 2022-08-16 às 11 43 34](https://user-images.githubusercontent.com/90638175/184908552-c40bd316-bed2-4153-b3b5-f57fd1c396a5.png)
+
+![Captura de Tela 2022-08-16 às 11 48 52](https://user-images.githubusercontent.com/90638175/184909719-3461f000-531d-4b5e-a4e8-50b59e79fdb9.png)
+
+![Captura de Tela 2022-08-16 às 11 51 43](https://user-images.githubusercontent.com/90638175/184910315-fd41cd78-cbb7-48b9-9038-d5b869f1bf09.png)
+
+![Captura de Tela 2022-08-16 às 11 53 37](https://user-images.githubusercontent.com/90638175/184910744-480baf91-22a7-4883-baab-9130dce4540d.png)
 
