@@ -39,7 +39,16 @@ corrigido:
 
 ## EXO 4 🚀 
 
-R:
+R:![Captura de Tela 2022-08-16 às 10 51 16](https://user-images.githubusercontent.com/90638175/184896463-e25fd3b8-c7dd-4736-ab5d-c2e68c1c9c63.png)
+
+A query acima faz um filtro selecionando os nomes que começão com A ou J e depois filtram entre estes nomes pessoas com salario acema de 300000
+
+![Captura de Tela 2022-08-16 às 11 01 54](https://user-images.githubusercontent.com/90638175/184898974-a04e59fb-7f96-466d-b541-101702e8ad5a.png)
+
+![Captura de Tela 2022-08-16 às 11 05 11](https://user-images.githubusercontent.com/90638175/184899733-22892a86-61d4-4507-a534-a15c8d4b695a.png)
+
+![Captura de Tela 2022-08-16 às 11 08 48](https://user-images.githubusercontent.com/90638175/184900507-dc837366-4f5d-410d-be6c-1a03f91737a9.png)
+
 
 ## EXO 5 🚀 
 
