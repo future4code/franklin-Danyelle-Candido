@@ -20,6 +20,7 @@ app.get('/listUsers',(req:Request,res:Response)=>{
 
 })
 
+//trazer saldo
 app.get('/listUsers/:cpf',(req:Request,res:Response)=>{
     const cpf =req.params.cpf
     const listarCorrentistas = correntistas.find((correntista)=> correntista.cpf ===cpf   )
@@ -94,5 +95,27 @@ app.post('/createAccount',(req:Request,res:Response)=>{
     }else{
         res.status(400).send({message:"Não autorizada a abertura de conta para menores de 18 anos"})
     }
+
+})
+
+app.put('/includeExpense',(req:Request,res:Response)=>{
+    const {name,cpf,valor} = req.body
+    const listarCorrentistas = correntistas.find((correntista)=> correntista.cpf ===cpf && correntista.name ===name )
+
+   const novoSaldo = listarCorrentistas?.saldo+valor
+/* 
+
+
+    con
+
+    function encontrarConta(nome,cpf,valor){
+        const listarCorrentistas = correntistas
+    }
+
+    function depositar(nome,cpf,valor){
+        
+    } */
+
+
 
 })
