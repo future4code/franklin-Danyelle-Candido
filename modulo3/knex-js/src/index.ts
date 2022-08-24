@@ -66,9 +66,7 @@ app.delete ("/actor/:id",async(req:Request,res:Response)=>{
         res.status(500).send("An unexpected error occurred")
     }
 })
-
-// Esse arquivo seria o index.ts
-
+//////
 const getActorById = async (id: string): Promise<any> => {
   const result = await connection.raw(`
     SELECT * FROM Actor WHERE id = '${id}'
@@ -77,8 +75,6 @@ const getActorById = async (id: string): Promise<any> => {
 	return result[0][0]
 }
 
-
-// Assim a chamada funciona fora dos endpoints com .then()/.catch
 getActorById("001")
 	.then(result => {
 		console.log(result)
@@ -87,13 +83,6 @@ getActorById("001")
 		console.log(err)
 	});
 
-// Assim a chamada funciona fora dos endpoints com await
-/* (async () => {
-  console.log(await getActorById("001") )
-})() */
-
-
-// Ou então podemos chamá-la dentro de um endpoint
 app.get("/users/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id
@@ -105,4 +94,168 @@ app.get("/users/:id", async (req: Request, res: Response) => {
 		console.log(error)
     res.status(500).send("Unexpected error")
   }
-}) // bata no http://localhost:3003/users/001 e veja o que acontece no terminal
+}) 
+
+//exo1
+    const searchActor = async (name: string): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT * FROM Actor WHERE name = "${name}"
+    `)
+    return result
+    }
+
+    const countActors = async (gender: string): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT COUNT(*) as count FROM Actor WHERE gender = "${gender}"
+    `);
+    const count = result[0][0].count;
+    return count;
+    };
+
+//Exo2
+    const updateActor = async (id: string, salary: number): Promise<any> => {
+    await connection("Actor")
+        .update({
+        salary: salary,
+        })
+        .where("id", id);
+    };
+
+    const deleteActor = async (id: string): Promise<void> => {
+    await connection("Actor")
+        .delete()
+        .where("id", id);
+    }; 
+
+    const avgSalary = async (gender: string): Promise<any> => {
+    const result = await connection("Actor")
+        .avg("salary as average")
+        .where({ gender });
+
+    return result[0].average;
+    };
+//Exo3
+    app.get("/actor/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const actor = await getActorById(id);
+
+        res.status(200).send(actor)
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+
+    app.get("/actor", async (req: Request, res: Response) => {
+    try {
+        const count = await countActors(req.query.gender as string);
+        res.status(200).send({
+        quantity: count,
+        });
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+
+//Exo4
+    app.put("/actor", async (req: Request, res: Response) => {
+    try {
+        await updateSalary(req.body.id, req.body.salary);
+        res.status(200).send({
+        message: "Success",
+        });
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+
+    app.delete("/actor/:id", async (req: Request, res: Response) => {
+    try {
+        await deleteActor(req.params.id);
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+//Exo5
+    const createMovie = async (
+    id: string,
+    title: string,
+    synopsis: string,
+    releaseDate: Date,
+    playingLimitDate: Date
+    ) => {
+    await connection
+        .insert({
+        id: id,
+        title: title,
+        synopsis: synopsis,
+        releas_date: releaseDate,
+        playing_limit_date: playingLimitDate,
+        })
+        .into("Movie");
+    };
+
+    app.post("/movie", async (req: Request, res: Response) => {
+    try {
+        await createMovie(
+        req.body.id,
+        req.body.title,
+        req.body.synopsis,
+        req.body.releaseDate,
+        req.body.playingLimitDate
+        );
+
+        res.status(200).send({
+        message: "Success"
+        });
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+
+// Exo6
+    const getAllMovies = async (): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT * FROM Movie LIMIT 15
+    `);
+
+    return result[0];
+    };
+
+    app.post("/movie/:id", async (req: Request, res: Response) => {
+    try {
+        const movies = await getAllMovies();
+
+        res.status(200).send({
+        movies: movies,
+        });
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
+
+    app.get("/movie/search", async (req: Request, res: Response) => {
+    try {
+        const movies = await searchMovie(req.query.query as string);
+
+        res.status(200).send({
+        movies: movies,
+        });
+    } catch (err) {
+        res.status(400).send({
+        message: err.message,
+        });
+    }
+    });
