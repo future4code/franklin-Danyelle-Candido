@@ -2,6 +2,77 @@ import { Request,Response } from "express";
 import app from "./app";
 import connection from "./connection";
 
+const getActorById = async (id: string): Promise<any> => {
+    const result = await connection.raw(`
+      SELECT * FROM Actor WHERE id = '${id}'
+    `)
+  
+      return result[0][0]
+  }
+
+const searchActor = async (name: string): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT * FROM Actor WHERE name = "${name}"
+    `)
+    return result
+    }
+
+const countActors = async (gender: string): Promise<any> => {
+        const result = await connection.raw(`
+            SELECT COUNT(*) as count FROM Actor WHERE gender = "${gender}"
+        `);
+        const count = result[0][0].count;
+        return count;
+    };
+
+const updateActor = async (id: string, salary: number): Promise<any> => {
+        await connection("Actor")
+            .update({
+            salary: salary,
+            })
+            .where("id", id);
+    };
+
+const deleteActor = async (id: string): Promise<void> => {
+        await connection("Actor")
+            .delete()
+            .where("id", id);
+        }; 
+
+const avgSalary = async (gender: string): Promise<any> => {
+    const result = await connection("Actor")
+         .avg("salary as average")
+        .where({ gender });
+        
+        return result[0].average;
+    };
+
+const createMovie = async (
+        id: string,
+        title: string,
+        synopsis: string,
+        releaseDate: Date,
+        rating: number
+        ) => {
+        await connection
+            .insert({
+            id: id,
+            title: title,
+            synopsis: synopsis,
+            release_Date: releaseDate,
+            rating: rating,
+            })
+            .into("Movies");
+        };
+
+const getAllMovies = async (): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT * FROM Movies LIMIT 15
+    `);    
+    return result[0];
+};
+        
+
 app.get("/actors",async (req:Request,res:Response)=>{
     try{
         //const result = await connection.raw(`select id, name from Actor`)
@@ -12,8 +83,6 @@ app.get("/actors",async (req:Request,res:Response)=>{
         console.log(error)
     }
 });
-
-
 
 app.put ("/actor/:id",async(req:Request,res:Response)=>{
     try{
@@ -50,16 +119,6 @@ app.delete ("/actor/:id",async(req:Request,res:Response)=>{
         res.status(500).send("An unexpected error occurred")
     }
 })
-//////
-
-
-const getActorById = async (id: string): Promise<any> => {
-  const result = await connection.raw(`
-    SELECT * FROM Actor WHERE id = '${id}'
-  `)
-
-	return result[0][0]
-}
 
 app.get("/actor/:id", async (req: Request, res: Response) => {
   try {
@@ -75,12 +134,6 @@ app.get("/actor/:id", async (req: Request, res: Response) => {
 }) 
 
 //exo1
-const searchActor = async (name: string): Promise<any> => {
-    const result = await connection.raw(`
-        SELECT * FROM Actor WHERE name = "${name}"
-    `)
-    return result
-    }
 
 app.get("/actors/:name", async (req: Request, res: Response) => {
         try {
@@ -94,16 +147,6 @@ app.get("/actors/:name", async (req: Request, res: Response) => {
           res.status(500).send("Unexpected error")
         }
       }) 
-
-    
-
-const countActors = async (gender: string): Promise<any> => {
-    const result = await connection.raw(`
-        SELECT COUNT(*) as count FROM Actor WHERE gender = "${gender}"
-    `);
-    const count = result[0][0].count;
-    return count;
-    };
 
 app.get("/actors/:gender", async (req: Request, res: Response) => {
         try {
@@ -119,32 +162,8 @@ app.get("/actors/:gender", async (req: Request, res: Response) => {
       }) 
 
 //Exo2
-const createActor = async (
-    id: string,
-    name: string,
-    salary: number,
-    dateOfBirth: Date,
-    gender: string
-  ): Promise<void> => {
-    await connection
-      .insert({
-        id: id,
-        name: name,
-        salary: salary,
-        birth_date: dateOfBirth,
-        gender: gender,
-      })
-      .into("Actor");
-  };
 
 
-const updateActor = async (id: string, salary: number): Promise<any> => {
-    await connection("Actor")
-        .update({
-        salary: salary,
-        })
-        .where("id", id);
-    };
 app.put ("/actor/edit/:id",async(req:Request,res:Response)=>{
         try{
             const id = req.params.id
@@ -158,14 +177,6 @@ app.put ("/actor/edit/:id",async(req:Request,res:Response)=>{
         }
     })
 
-
-
-const deleteActor = async (id: string): Promise<void> => {
-    await connection("Actor")
-        .delete()
-        .where("id", id);
-    }; 
-
 app.delete ("/actor/:id",async(req:Request,res:Response)=>{
         try{
             const id = req.params.id
@@ -176,13 +187,6 @@ app.delete ("/actor/:id",async(req:Request,res:Response)=>{
         }
     })
 
-const avgSalary = async (gender: string): Promise<any> => {
-    const result = await connection("Actor")
-        .avg("salary as average")
-        .where({ gender });
-
-    return result[0].average;
-    };
 
 app.get("/actors/:gender", async (req: Request, res: Response) => {
         try {
@@ -197,10 +201,8 @@ app.get("/actors/:gender", async (req: Request, res: Response) => {
         }
       }) 
 
-
-
 //Exo3
-    app.get("/actor/:id", async (req: Request, res: Response) => {
+app.get("/actor/:id", async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const actor = await getActorById(id);
@@ -213,7 +215,7 @@ app.get("/actors/:gender", async (req: Request, res: Response) => {
     }
     });
 
-    app.get("/actor", async (req: Request, res: Response) => {
+app.get("/actor", async (req: Request, res: Response) => {
     try {
         //variavel countActors voi declarada na linha 116
         const count = await countActors(req.query.gender as string);
@@ -246,7 +248,6 @@ app.post ("/actor",async(req:Request,res:Response)=>{
     }
 })
 
-
 app.put ("/actor/:id",async(req:Request,res:Response)=>{
     try{
         await connection("Actor").update({
@@ -262,7 +263,7 @@ app.put ("/actor/:id",async(req:Request,res:Response)=>{
     }
 })
 
-    app.delete("/actor/:id", async (req: Request, res: Response) => {
+app.delete("/actor/:id", async (req: Request, res: Response) => {
     try {
         await deleteActor(req.params.id);
     } catch (error) {
@@ -272,25 +273,7 @@ app.put ("/actor/:id",async(req:Request,res:Response)=>{
     }
     });
 //Exo5
-    const createMovie = async (
-    id: string,
-    title: string,
-    synopsis: string,
-    releaseDate: Date,
-    rating: number
-    ) => {
-    await connection
-        .insert({
-        id: id,
-        title: title,
-        synopsis: synopsis,
-        release_Date: releaseDate,
-        rating: rating,
-        })
-        .into("Movies");
-    };
-
-    app.post("/movie", async (req: Request, res: Response) => {
+app.post("/movie", async (req: Request, res: Response) => {
     try {
         await createMovie(
         req.body.id,
@@ -311,13 +294,7 @@ app.put ("/actor/:id",async(req:Request,res:Response)=>{
     });
 
 // Exo6
-    const getAllMovies = async (): Promise<any> => {
-    const result = await connection.raw(`
-        SELECT * FROM Movies LIMIT 15
-    `);
 
-    return result[0];
-    };
 
 app.post("/movies", async (req: Request, res: Response) => {
     try {
