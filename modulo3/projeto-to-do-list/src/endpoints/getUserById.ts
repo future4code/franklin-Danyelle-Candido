@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import insertUser from "../data/insertUser";
 import selectUser from "../data/selectUser";
 
 export default async function getUserById(req:Request, res:Response)  {

@@ -2,10 +2,12 @@ import connection from "../connection"
 
 export default async function selectTask(
     id: string
-) {
-    const result = await connection('TodoListTask')
-    .select('*')
-    .where({ id })
+):Promise<any> {
+    const result = await connection.raw(`
+    SELECT t.*, nickname FROM TodoListTask t
+    JOIN TodoListUser u ON creator_user_id = u.id
+    WHERE t.id = ${id}
+    `)
 
-    return result[0]
+    return result [0][0]
 }

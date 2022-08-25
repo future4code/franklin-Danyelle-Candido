@@ -4,18 +4,16 @@ export default async function insertTask(
     id: string,
     title: string,
     description: string,
-    status:string,
-    limit_date:string,
-    creator_user_id:string
+    limitDate:string,
+    creatorUserId:string
     
     ) {
         await connection.insert({
             id,
             title,
             description,
-            status,
-            limit_date,
-            creator_user_id
-        }).into('TodoListUser')
+            limit_date:limitDate,
+            creator_user_id:creatorUserId
+        }).into('TodoListTask')
     
 }
