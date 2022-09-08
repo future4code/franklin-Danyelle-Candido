@@ -43,7 +43,5 @@ b)vide authenticator.ts
 
 ### exo8
 
-a)
-
-b)
+a)vide getUser
 

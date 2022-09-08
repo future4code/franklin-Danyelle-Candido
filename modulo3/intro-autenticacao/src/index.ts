@@ -1,6 +1,7 @@
 import app from "./app";
 import createUser from "./endpoints/createUser";
 import editUser from "./endpoints/editUser";
+import getUser from "./endpoints/getUser";
 import login from "./endpoints/login";
 import Authenticator from "./services/Authenticator";
 import { authenticationData } from "./type";
@@ -16,3 +17,4 @@ console.log(authenticator.generateToken(payload))
 app.post('/user/signup', createUser)
 app.post('/user/login',login)
 app.put('/user/edit/', editUser)
+app.get('/user/profile/', getUser)
