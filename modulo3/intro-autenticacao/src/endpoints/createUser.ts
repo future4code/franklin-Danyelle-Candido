@@ -15,6 +15,13 @@ export default async function createUser(
          res.statusCode = 422
          throw new Error("Preencha os campos 'name','nickname', 'password' e 'email'")
       }
+      if (!email|| email.indexOf("@") === -1) {
+         throw new Error("Invalid email");
+       }
+
+       if (!password || password.length < 6) {
+         throw new Error("Invalid password");
+       }
 
       const [user] = await connection('to_do_list_users')
          .where({ email })
