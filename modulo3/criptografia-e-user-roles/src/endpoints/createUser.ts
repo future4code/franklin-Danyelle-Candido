@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { Generate } from "../services/Generate";
+import { HashMenage } from "../services/HashMenage";
 import { user } from "../types";
 
 export default async function createUser(
@@ -28,16 +29,20 @@ export default async function createUser(
       const generate = new Generate()
       const id: string = generate.generateId()
 
-      const newUser: user = { id, name, nickname, email, password }
+      const hashMenage = new HashMenage()
+      const hash = await hashMenage.hash(password)
+
+      const newUser: user = { id, name, nickname, email, password: hash}
 
       await userDB.create(newUser)
 
       const authenticator = new Authenticator()
-      const token = authenticator.generateToken({id})
+      const token = authenticator.generateToken({id,})
 
       res.status(201).send({ newUser, token })
 
    } catch (error: any) {
+      console.log(error)
       if (res.statusCode === 200) {
          res.status(500).send({ message: "Internal server error" })
       } else {

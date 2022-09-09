@@ -14,6 +14,9 @@ export default async function getProfile(req: Request, res: Response){
         const userDB = new UserDatabase()
         const user = await userDB.getById(data.id)
 
+        /* if (data.role !== "normal") {
+            throw new Error("Only a normal user can access this funcionality");
+          } */
         res.send({
             user: {
                 email: user.email,

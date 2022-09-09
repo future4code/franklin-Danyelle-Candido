@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken"
 import { AuthenticatorData } from "../types"
 export class Authenticator {
-    private static EXPIRES_IN = "10m"
+    private static EXPIRES_IN = "1m"
 
     public generateToken = (payload: AuthenticatorData) => {
         const token = jwt.sign(payload,
