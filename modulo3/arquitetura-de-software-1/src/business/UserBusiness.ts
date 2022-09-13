@@ -60,13 +60,13 @@ export default class UserBusiness {
         const user = userDatabase.logUser(email)
     
         if(!user) {
-            throw new Error("The user does not exist")
+            throw new Error("o usuario não existe")
         }
     
         const validationPassword: boolean = await hashManager.compare(password, (await user).password)
     
         if(!validationPassword) {
-            throw new Error("Invalid Password")
+            throw new Error("senha invalida")
         }
     
         const token = authenticator.generateToken({
@@ -79,7 +79,7 @@ export default class UserBusiness {
 
     public listusers = async (token: string) => {
         if(!token) {
-            throw new Error("Invalid token")
+            throw new Error("Parâmetro 'token' inválido")
         }
         const response = userDatabase.getUsers()
     

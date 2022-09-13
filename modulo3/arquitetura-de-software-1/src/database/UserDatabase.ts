@@ -60,7 +60,7 @@ export default class UserDatabase extends BaseDatabase {
             .where({id: id})
 
         }catch (error:any) {
-            throw new Error("Error in delet user")
+            throw new Error("erro ao deletar usuário ")
         }
     }
     
