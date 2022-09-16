@@ -8,9 +8,9 @@ import { IdGenerator } from '../services/IdGenerator'
 
 export const userRouter = Router()//IMPORTANDO O ROUTER 
 
-//ABAIXO EU IMPORTO MEU CONTROLER 
+//ABAIXO EU IMPORTO MEU CONTROLER - e instancio as dependencias do meu controller 
 const userController = new UserController(
-    new UserBusiness(
+    new UserBusiness(//a ordem importa
         new UserDatabase(),
         new Authenticator(),
         new IdGenerator(),
