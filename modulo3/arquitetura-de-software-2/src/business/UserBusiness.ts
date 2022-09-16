@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { IGetUsersInputDBDTO, IGetUsersInputDTO, ISignupInputDTO, ISignupOutputDTO, User, USER_ROLES } from "../models/User"
+import { IDeleteUserInputDTO, IEditUsersInputDTO, IGetUsersInputDBDTO, IGetUsersInputDTO, ILoginInputDTO, ISignupInputDTO, ISignupOutputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -71,7 +71,7 @@ export class UserBusiness {
         return response
     }
 
-    public login = async (input: any) => {
+    public login = async (input: ILoginInputDTO) => {
         const email = input.email
         const password = input.password
 
@@ -181,9 +181,13 @@ export class UserBusiness {
         return response
     }
 
-    public deleteUser = async (input: any) => {
+    public deleteUser = async (input: IDeleteUserInputDTO) => {
         const token = input.token
         const idToDelete = input.idToDelete
+
+        if (!token) {
+            throw new Error("Token faltando")
+        }
 
         const payload = this.authenticator.getTokenPayload(token)
 
@@ -214,7 +218,7 @@ export class UserBusiness {
         return response
     }
 
-    public editUser = async (input: any) => {
+    public editUser = async (input:IEditUsersInputDTO) => {
         const {
             token,
             idToEdit,

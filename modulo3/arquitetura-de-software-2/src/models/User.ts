@@ -72,6 +72,11 @@ export interface ISignupOutputDTO {
     token: string
 }
 
+export interface ILoginInputDTO {
+    email: string,
+    password: string
+}
+
 export interface IGetUsersInputDTO {
     token: string | undefined,
     search: string,
@@ -87,4 +92,17 @@ export interface IGetUsersInputDBDTO {
     sort: string,
     limit: number,
     offset: number,
+}
+
+export interface IDeleteUserInputDTO  {
+    token: string | undefined,
+    idToDelete: string
+}
+
+export interface IEditUsersInputDTO  {
+    token: string | undefined,
+    idToEdit: string,
+    name: string,
+    email: string,
+    password: string
 }
