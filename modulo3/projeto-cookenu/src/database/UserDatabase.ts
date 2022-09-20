@@ -1,78 +1,48 @@
-import { IGetUsersInputDBDTO, IUserDB, User } from "../models/User"
+import { IUserDB, User } from "../models/User"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class UserDatabase extends BaseDatabase {
-    public static TABLE_USERS = "Arq2_Users"
-
-    public findByEmail = async (email: string) => {
-        const usersDB: IUserDB[] = await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
-            .select()
-            .where({ email })
-
-        return usersDB[0]
-    }
-
+    public static TABLE_USERS = "cookenuser"
+    
     public createUser = async (user: User) => {
         const userDB: IUserDB = {
             id: user.getId(),
             name: user.getName(),
             email: user.getEmail(),
-            password: user.getPassword(),
-            role: user.getRole()
-        }
-
+            password: user.getPassword()
+        } 
         await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
-            .insert(userDB)
+        .connection(UserDatabase.TABLE_USERS)
+        .insert(userDB)
     }
-
-    public getUsers = async (input: IGetUsersInputDBDTO) => {
-        const search = input.search
-        const order = input.order
-        const sort = input.sort
-        const limit = input.limit
-        const offset = input.offset
-
+    
+    public findByEmail = async (email: string) => {
         const usersDB: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .select()
-            .where("name", "LIKE", `%${search}%`)
-            .orderBy(order, sort)
-            .limit(limit)
-            .offset(offset)
-        
-        return usersDB
-    }
+            .where({ email })
+    
+            return usersDB[0]
+        }
 
     public findById = async (id: string) => {
         const usersDB: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
-            .select()
+            .select("name", "email")
             .where({ id })
+            .into(UserDatabase.TABLE_USERS)
 
         return usersDB[0]
     }
 
-    public deleteUser = async (id: string) => {
-        await BaseDatabase
+    public SelectById = async (id: string) => {
+        const usersDB: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
-            .delete()
+            .select("id", "name", "email")
             .where({ id })
+            .into(UserDatabase.TABLE_USERS)
+
+        return usersDB[0]
     }
 
-    public editUser = async (user: User) => {
-        const userDB: IUserDB = {
-            id: user.getId(),
-            name: user.getName(),
-            email: user.getEmail(),
-            password: user.getPassword(),
-            role: user.getRole()
-        }
-        
-        await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
-            .update(userDB)
-            .where({ id: userDB.id })
-    }
 }
