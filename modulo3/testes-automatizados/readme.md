@@ -1,17 +1,5 @@
-## EXO1
-
-## EXO2
-
 ## EXO3
 
-## EXO4
+c) entender a lógica da dica 
 
-## EXO5
-
-## EXO6
-
-## EXO7
-
-## EXO8
-
-## EXO9
+## E
