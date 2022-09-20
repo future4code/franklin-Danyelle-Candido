@@ -21,4 +21,11 @@ describe("Testando a função PerformPurchase", () => {
         const result = performPurchase(user,value)
         expect(result).toEqual(undefined)
     })
+    //ou
+    test("Deve retornar undefined-outra forma", () => {
+        const user = {name:"nelson",balance:10}
+        const value = 100
+        const result = performPurchase(user,value)
+        expect(result).not.toBeDefined()
+    })
 })
