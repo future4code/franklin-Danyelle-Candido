@@ -1,14 +1,9 @@
-export enum USER_ROLES {
-    NORMAL = "NORMAL",
-    ADMIN = "ADMIN"
-}
 
 export interface IUserDB {
     id: string,
     name: string,
     email: string,
     password: string,
-    role: USER_ROLES
 }
 
 export class User {
@@ -16,8 +11,7 @@ export class User {
         private id: string,
         private name: string,
         private email: string,
-        private password: string,
-        private role: USER_ROLES
+        private password: string
     ) { }
 
     public getId = () => {
@@ -36,10 +30,6 @@ export class User {
         return this.password
     }
 
-    public getRole = () => {
-        return this.role
-    }
-
     public setId = (newId: string) => {
         this.id = newId
     }
@@ -56,9 +46,6 @@ export class User {
         this.password = newPassword
     }
 
-    public setRole = (newRole: USER_ROLES) => {
-        this.role = newRole
-    }
 }
 
 export interface ISignupInputDTO {
@@ -72,19 +59,11 @@ export interface ISignupOutputDTO {
     token: string
 }
 
-export interface IGetUsersInputDTO {
-    token: string | undefined,
-    search: string,
-    order: string,
-    sort: string,
-    limit: string,
-    page: string,
+export interface ILoginInputDTO {
+    email: string,
+    password: string
 }
 
-export interface IGetUsersInputDBDTO {
-    search: string,
-    order: string,
-    sort: string,
-    limit: number,
-    offset: number,
+export interface ITokenPayload {
+    id: string
 }
