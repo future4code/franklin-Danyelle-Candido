@@ -1,4 +1,4 @@
-import { Signup, User } from "../model/User"
+import { Signup, User } from "../models/User"
 
 export interface UserRepository {
     signup(signup: Signup): Promise<void>

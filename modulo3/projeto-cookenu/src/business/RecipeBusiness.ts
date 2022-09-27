@@ -1,12 +1,8 @@
 import moment from "moment";
-import { invalidAuthenticatorData, invalidToken } from "../Error/AutenticatorError";
-import { BaseError } from "../Error/BaseError";
-import { MissingFieldsToComplete } from "../Error/MissingFieldsToComplete";
-import { invalidRecipe } from "../Error/RecipeError";
-import { Recipe, RecipeInputDTO } from "../model/Recipe";
+import { Recipe, RecipeInputDTO } from "../models/Recipe";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
-import { RecipeRepository } from "./RecipeRepository";
+import { RecipeRepository } from "./RecipeRepo";
 
 export class RecipeBusiness {
     constructor(private recipeDataBase: RecipeRepository) { }
@@ -17,20 +13,20 @@ export class RecipeBusiness {
             const { title, description, token } = input
 
             if (!token) {
-                throw new invalidToken()
+                console.log("token invalido")
             }
 
             if (!title || !description) {
-                throw new MissingFieldsToComplete()
+                console.log("titulo e descrição invalido")
             }
 
-            const authenticatorData = new Authenticator().getTokenData(token)
+            const authenticatorData = new Authenticator().getTokenPayload(token)
 
-            if (!authenticatorData.id) {
-                throw new invalidAuthenticatorData()
+            if (!authenticatorData) {
+               console.log ("Unauthorized user")
             }
 
-            const id = new IdGenerator().generateId()
+            const id = new IdGenerator().generate()
             const createdAt = new Date() as any
 
             const recipe: Recipe = {
@@ -38,14 +34,14 @@ export class RecipeBusiness {
                 title,
                 description,
                 createdAt,
-                authorId: authenticatorData.id
+                authorId: authenticatorData
             }
 
             await this.recipeDataBase.createRecipe(recipe)
 
 
         } catch (error: any) {
-            throw new BaseError(error.statusCode, error.sqlMessage || error.message);
+            console.log(error.statusCode, error.sqlMessage || error.message);
         }
     }
 
@@ -53,26 +49,26 @@ export class RecipeBusiness {
         try {
 
             if (!token) {
-                throw new invalidToken()
+                console.log("token invalido")
             }
 
-            const authenticatorData = new Authenticator().getTokenData(token)
+            const authenticatorData = new Authenticator().getTokenPayload(token)
 
-            if (!authenticatorData.id) {
-                throw new invalidAuthenticatorData()
+            if (!authenticatorData) {
+                console.log("autenticação id")
             }
 
             const recipe = await this.recipeDataBase.selectRecipeById(id)
 
             if (!recipe) {
-                throw new invalidRecipe()
+                console.log("receita invalida")
             }
 
             recipe.createdAt = moment(recipe.createdAt).format("DD/MM/YYYY")
 
             return recipe
         } catch (error: any) {
-            throw new BaseError(error.statusCode, error.sqlMessage || error.message);
+            console.log(error.statusCode, error.sqlMessage || error.message);
         }
     }
 }
