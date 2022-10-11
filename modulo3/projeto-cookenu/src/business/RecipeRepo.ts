@@ -1,4 +1,4 @@
-import { Recipe } from "../model/Recipe"
+import { Recipe } from "../models/Recipe"
 
 export interface RecipeRepository {
     createRecipe(recipe: Recipe): Promise<void>
