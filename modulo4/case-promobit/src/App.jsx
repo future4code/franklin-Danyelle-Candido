@@ -1,11 +1,14 @@
-import { ThemeProvider } from "@mui/material";
-import { HomePage} from "./components/HomePage";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider >
-      <HomePage/>
-    </ThemeProvider>
+    <div className="app-container">
+      <Navbar />
+      <Outlet />
+    </div>
   );
 }
 
